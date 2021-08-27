@@ -14,13 +14,11 @@
 #define IDC_BUTTON2                     1003
 #define ShapeColor                      1020
 #define LineColor                       1021
-#define IDC_COMBO5                      1022
 #define LineWidth                       1022
 #define SquareShape                     1023
 #define CircleShape                     1024
 #define LineShape                       1025
 #define IDC_RectBtn                     1026
-#define m_RectBtn                       1026
 #define IDC_EllipseBtn                  1028
 #define IDC_TraBtn                      1029
 #define IDC_LineBtn                     1030
