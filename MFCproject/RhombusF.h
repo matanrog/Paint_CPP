@@ -8,7 +8,7 @@ public:
 	RhombusF(CPoint start, CPoint end, int borderSize, COLORREF fillColor , COLORREF borderColor);
 	~RhombusF();
 	void Redefine(CPoint p1, CPoint p2);
-	void Draw(CPaintDC& dc) const;
+	void Draw(CPaintDC& dc) ;
 	void SetShape(CPoint p1, CPoint p2);
 };
 

@@ -7,6 +7,6 @@ public:
 	LineF(const LineF&);
 	LineF();
 	~LineF();
-	void Draw(CPaintDC&) const;
+	void Draw(CPaintDC&);
 };
 

@@ -8,9 +8,9 @@
 #define IDI_Ellipse_ICON                136
 #define IDI_Triangle_ICON               137
 #define IDI_Line_ICON                   138
-#define IDB_BITMAP1                     145
-#define IDB_Sqaure_BITMAP               145
-#define IDB_Rhombus_BITMAP              146
+#define IDI_SimpleTirangle_ICON         149
+#define IDI_Rhombus_ICON                150
+#define IDI_Sqaure_ICON                 152
 #define IDC_BUTTON1                     1002
 #define IDC_BUTTON2                     1003
 #define ShapeColor                      1020
@@ -30,7 +30,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        147
+#define _APS_NEXT_RESOURCE_VALUE        153
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1033
 #define _APS_NEXT_SYMED_VALUE           101

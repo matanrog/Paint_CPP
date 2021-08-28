@@ -15,7 +15,7 @@ EllipseF::~EllipseF()
 {
 }
 
-void EllipseF::Draw(CPaintDC& dc) const
+void EllipseF::Draw(CPaintDC& dc)
 {
 	CPoint p1 = getP1();
 	CPoint p2 = getP2();

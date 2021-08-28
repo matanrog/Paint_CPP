@@ -73,4 +73,5 @@ private:
 	void SetImages();	
 public:
 	afx_msg void OnBnClickedLinebtn();
+	afx_msg void OnBnClickedTrabtn();
 };
