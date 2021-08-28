@@ -216,6 +216,7 @@
     <Image Include="res\line.ico" />
     <Image Include="res\MFCproject.ico" />
     <Image Include="res\rectangle.ico" />
+    <Image Include="res\sqaure.ico" />
     <Image Include="res\triangle.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

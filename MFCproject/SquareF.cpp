@@ -1,17 +1,20 @@
 #include "stdafx.h"
 #include "SquareF.h"
-IMPLEMENT_SERIAL(SquareF, CObject, 3)
-SquareF::SquareF(CPoint start, CPoint end, int borderSize = 1, COLORREF fillColor = RGB(255, 255, 255), COLORREF borderColor = RGB(0, 0, 0, 0))
+IMPLEMENT_SERIAL(SquareF, CObject,1)
+
+SquareF::SquareF(CPoint start, CPoint end, int borderSize , COLORREF fillColor , COLORREF borderColor )
 {
-	if (abs(end.x - start.x) > abs(end.y - start.y))
-		end.y += end.x - start.x - (end.y - start.y);
-	else
-		end.x += end.y - start.y - (end.x - start.x);
-	P1 = start;
-	P2 = end;
+	SetShape(start,end);
 }
 void SquareF::Redefine(CPoint p1, CPoint p2)
 {
+	SetShape(p1,p2);
+}
+
+//TODO: Draw
+
+
+void SquareF::SetShape(CPoint p1, CPoint p2) {
 	if (abs(p2.x - p1.x) > abs(p2.y - p1.y))
 		p2.y += p2.x - p1.x - (p2.y - p1.y);
 	else

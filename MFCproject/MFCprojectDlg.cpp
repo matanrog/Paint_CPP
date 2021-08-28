@@ -31,6 +31,7 @@ void CMFCprojectDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EllipseBtn, Ellipse_Btn);
 	DDX_Control(pDX, IDC_TraBtn, TriangleBtn);
 	DDX_Control(pDX, IDC_LineBtn, lineBtn);
+	DDX_Control(pDX, IDC_SquareBtn, Square_Btn);
 }
 
 BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
@@ -49,6 +50,7 @@ BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
 	ON_BN_CLICKED(LineColor, &CMFCprojectDlg::OnBnClickedLinecolor)
 	ON_BN_CLICKED(IDC_RectBtn, &CMFCprojectDlg::OnBnClickedRectbtn)
 	ON_BN_CLICKED(IDC_EllipseBtn, &CMFCprojectDlg::OnBnClickedEllipsebtn)
+	ON_BN_CLICKED(IDC_SquareBtn, &CMFCprojectDlg::OnBnClickedSquarebtn)
 END_MESSAGE_MAP()
 
 
@@ -76,17 +78,20 @@ void CMFCprojectDlg::SetImages() {
 
 	HICON rectangle = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Rect_ICON),
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
-   HICON ellipse = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Ellipse_ICON),
+	HICON ellipse = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Ellipse_ICON),
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
-   HICON triangle = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Triangle_ICON),
+	HICON triangle = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Triangle_ICON),
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
-   HICON line = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Line_ICON),
+	HICON line = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Line_ICON),
 	   IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
+	HBITMAP  square = (HBITMAP)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDB_Sqaure_BITMAP),
+		IMAGE_BITMAP, 30, 30, LR_DEFAULTCOLOR);
 
-	Ellipse_Btn.SetIcon(ellipse);//*/
+	Ellipse_Btn.SetIcon(ellipse);
 	rectBtn.SetIcon(rectangle);
 	TriangleBtn.SetIcon(triangle);
 	lineBtn.SetIcon(line);
+	Square_Btn.SetBitmap(square);
 }
 
 
@@ -256,4 +261,10 @@ void CMFCprojectDlg::OnBnClickedRectbtn()
 void CMFCprojectDlg::OnBnClickedEllipsebtn()
 {
 	futureFigureKind = 2;
+}
+
+
+void CMFCprojectDlg::OnBnClickedSquarebtn()
+{
+	futureFigureKind = 3;
 }

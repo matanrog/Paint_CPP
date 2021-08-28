@@ -14,4 +14,10 @@ RectangleF::RectangleF(CPoint p1, CPoint p2)
 }
 RectangleF::RectangleF(CPoint start, CPoint end, int borderSize, COLORREF fillColor, COLORREF borderColor)
 	: Figure(start, end, borderSize, fillColor, borderColor) {}
+void RectangleF::Draw(CPaintDC& dc) const
+{
+	dc.SelectObject(border);
+	dc.SelectObject(bkground);
+	dc.Rectangle(P1.x, P1.y, P2.x, P2.y);
+}
 //!! 14 e

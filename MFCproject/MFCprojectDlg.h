@@ -66,4 +66,6 @@ public:
 	afx_msg void OnBnClickedEllipsebtn();
 	CButton TriangleBtn;
 	CButton lineBtn;
+	CButton Square_Btn;
+	afx_msg void OnBnClickedSquarebtn();
 };
