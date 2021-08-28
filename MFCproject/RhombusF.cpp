@@ -2,7 +2,11 @@
 #include "RhombusF.h"
 IMPLEMENT_SERIAL(RhombusF, CObject, 4)
 
+RhombusF::RhombusF() :RectangleF() {}
+
+
 RhombusF::RhombusF(CPoint start, CPoint end, int borderSize, COLORREF fillColor, COLORREF borderColor)
+	:RectangleF(start, end, borderSize, fillColor, borderColor)
 {
 	SetShape(start, end);
 }
@@ -19,6 +23,7 @@ void RhombusF::SetShape(CPoint p1, CPoint p2) {
 	P1 = p1;
 	P2 = p2;
 }
+
 void RhombusF::Draw(CPaintDC& dc) const
 {
 	CPoint points[4];

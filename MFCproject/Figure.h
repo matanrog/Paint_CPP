@@ -8,7 +8,6 @@ public:
 	CPoint P1;
 	CPoint P2;
 	int lineWigth;
-	int x = 10;
 
 	COLORREF fillColor;
 	COLORREF borderColor;

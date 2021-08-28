@@ -3,6 +3,7 @@
 IMPLEMENT_SERIAL(SquareF, CObject,3)
 
 SquareF::SquareF(CPoint start, CPoint end, int borderSize , COLORREF fillColor , COLORREF borderColor )
+	:RectangleF(start, end, borderSize, fillColor, borderColor)
 {
 	SetShape(start,end);
 }
