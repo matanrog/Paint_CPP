@@ -11,6 +11,10 @@ EllipseF::EllipseF():Figure(){}
 EllipseF::EllipseF(CPoint start, CPoint end, int borderSize, COLORREF fillColor, COLORREF borderColor)
 	: Figure(start, end, borderSize, fillColor, borderColor){}
 
+EllipseF::~EllipseF()
+{
+}
+
 void EllipseF::Draw(CPaintDC& dc) const
 {
 	CPoint p1 = getP1();

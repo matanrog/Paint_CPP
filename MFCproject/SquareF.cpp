@@ -7,6 +7,9 @@ SquareF::SquareF(CPoint start, CPoint end, int borderSize , COLORREF fillColor ,
 {
 	SetShape(start,end);
 }
+SquareF::~SquareF()
+{
+}
 void SquareF::Redefine(CPoint p1, CPoint p2)
 {
 	SetShape(p1,p2);

@@ -13,6 +13,9 @@ Figure::Figure(CPoint start, CPoint end, int borderSize, COLORREF fillColor, COL
 	border.CreatePen(PS_SOLID, lineWigth, borderColor);
 	bkground.CreateSolidBrush(fillColor);
 }
+Figure::~Figure()
+{
+}
 Figure::Figure(){
 	this->P1.SetPoint(0, 0);
 	this->P2.SetPoint(0, 0);

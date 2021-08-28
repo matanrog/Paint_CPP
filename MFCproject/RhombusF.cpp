@@ -10,6 +10,10 @@ RhombusF::RhombusF(CPoint start, CPoint end, int borderSize, COLORREF fillColor,
 	SetShape(start, end);
 }
 
+RhombusF::~RhombusF()
+{
+}
+
 void RhombusF::Redefine(CPoint p1, CPoint p2)
 {
 	SetShape(p1, p2);

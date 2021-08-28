@@ -15,6 +15,7 @@ public:
 	CBrush bkground;
 	Figure();
 	Figure(CPoint start, CPoint end, int borderSize = 1, COLORREF fillColor = RGB(255, 255, 255), COLORREF borderColor = RGB(0, 0, 0, 0));
+	virtual ~Figure();
 	void Serialize(CArchive& ar);
 	virtual void Draw(CPaintDC& dc) const;
 	CPoint getP1() const;
