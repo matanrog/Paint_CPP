@@ -8,7 +8,9 @@
 #define IDI_Ellipse_ICON                136
 #define IDI_Triangle_ICON               137
 #define IDI_Line_ICON                   138
+#define IDB_BITMAP1                     145
 #define IDB_Sqaure_BITMAP               145
+#define IDB_Rhombus_BITMAP              146
 #define IDC_RADIO1                      1000
 #define IDC_RADIO2                      1001
 #define IDC_BUTTON1                     1002
@@ -24,14 +26,15 @@
 #define IDC_TraBtn                      1029
 #define IDC_LineBtn                     1030
 #define IDC_SquareBtn                   1031
+#define IDC_RhombusBtn                  1032
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        146
+#define _APS_NEXT_RESOURCE_VALUE        147
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1032
+#define _APS_NEXT_CONTROL_VALUE         1033
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

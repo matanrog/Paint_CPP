@@ -42,6 +42,9 @@
     <ClInclude Include="SquareF.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RhombusF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCproject.cpp">
@@ -65,6 +68,9 @@
     <ClCompile Include="SquareF.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RhombusF.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MFCproject.rc">
@@ -77,6 +83,7 @@
     </None>
     <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\MFCproject.ico">
@@ -95,6 +102,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\sqaure.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\rhombus.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

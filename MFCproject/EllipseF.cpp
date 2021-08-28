@@ -3,7 +3,7 @@
 #include "EllipseF.h"
 
 //!! 22 b
-IMPLEMENT_SERIAL(EllipseF, CObject, 1)
+IMPLEMENT_SERIAL(EllipseF, CObject, 2)
 //!! 22 e
 
 EllipseF::EllipseF(){}

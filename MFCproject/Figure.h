@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 class Figure : public CObject {
+public:
 	//!! 21 b
 	DECLARE_SERIAL(Figure)   //!!! NO ";"  
 	//!! 21 e
@@ -13,8 +14,6 @@ class Figure : public CObject {
 	COLORREF borderColor;
 	CPen border;
 	CBrush bkground;
-
-public:
 	Figure();
 	Figure(CPoint start, CPoint end, int borderSize = 1, COLORREF fillColor = RGB(255, 255, 255), COLORREF borderColor = RGB(0, 0, 0, 0));
 	void Serialize(CArchive& ar);

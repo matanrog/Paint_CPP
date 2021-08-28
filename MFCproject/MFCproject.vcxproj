@@ -185,6 +185,7 @@
     <ClInclude Include="MFCprojectDlg.h" />
     <ClInclude Include="RectangleF.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="RhombusF.h" />
     <ClInclude Include="SquareF.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="MFCproject.cpp" />
     <ClCompile Include="MFCprojectDlg.cpp" />
     <ClCompile Include="RectangleF.cpp" />
+    <ClCompile Include="RhombusF.cpp" />
     <ClCompile Include="SquareF.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -209,6 +211,7 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="res\MFCproject.rc2" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +219,7 @@
     <Image Include="res\line.ico" />
     <Image Include="res\MFCproject.ico" />
     <Image Include="res\rectangle.ico" />
+    <Image Include="res\rhombus.ico" />
     <Image Include="res\sqaure.ico" />
     <Image Include="res\triangle.ico" />
   </ItemGroup>

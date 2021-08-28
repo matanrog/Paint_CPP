@@ -68,4 +68,6 @@ public:
 	CButton lineBtn;
 	CButton Square_Btn;
 	afx_msg void OnBnClickedSquarebtn();
+	CButton Rhombus_Btn;
+	afx_msg void OnBnClickedRhombusbtn();
 };

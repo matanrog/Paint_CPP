@@ -7,6 +7,7 @@
 #include "MFCprojectDlg.h"
 #include "afxdialogex.h"
 #include "SquareF.h"
+#include "RhombusF.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -32,6 +33,7 @@ void CMFCprojectDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_TraBtn, TriangleBtn);
 	DDX_Control(pDX, IDC_LineBtn, lineBtn);
 	DDX_Control(pDX, IDC_SquareBtn, Square_Btn);
+	DDX_Control(pDX, IDC_RhombusBtn, Rhombus_Btn);
 }
 
 BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
@@ -51,6 +53,7 @@ BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_RectBtn, &CMFCprojectDlg::OnBnClickedRectbtn)
 	ON_BN_CLICKED(IDC_EllipseBtn, &CMFCprojectDlg::OnBnClickedEllipsebtn)
 	ON_BN_CLICKED(IDC_SquareBtn, &CMFCprojectDlg::OnBnClickedSquarebtn)
+	ON_BN_CLICKED(IDC_RhombusBtn, &CMFCprojectDlg::OnBnClickedRhombusbtn)
 END_MESSAGE_MAP()
 
 
@@ -86,12 +89,16 @@ void CMFCprojectDlg::SetImages() {
 	   IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
 	HBITMAP  square = (HBITMAP)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDB_Sqaure_BITMAP),
 		IMAGE_BITMAP, 30, 30, LR_DEFAULTCOLOR);
+	HBITMAP  rhombus = (HBITMAP)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDB_Rhombus_BITMAP),
+		IMAGE_BITMAP, 30, 30, LR_DEFAULTCOLOR);
 
 	Ellipse_Btn.SetIcon(ellipse);
 	rectBtn.SetIcon(rectangle);
 	TriangleBtn.SetIcon(triangle);
 	lineBtn.SetIcon(line);
 	Square_Btn.SetBitmap(square);
+	Rhombus_Btn.SetBitmap(rhombus);
+
 }
 
 
@@ -158,6 +165,10 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 		break;
 	case 3:
 		f = new SquareF(start, start, 1, fillColorShape, lineColor);
+		figs.Add(f);
+		break;
+	case 4:
+		f = new RhombusF(start, start, 1, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
 	}
@@ -267,4 +278,10 @@ void CMFCprojectDlg::OnBnClickedEllipsebtn()
 void CMFCprojectDlg::OnBnClickedSquarebtn()
 {
 	futureFigureKind = 3;
+}
+
+
+void CMFCprojectDlg::OnBnClickedRhombusbtn()
+{
+	futureFigureKind = 4;
 }
