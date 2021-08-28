@@ -4,12 +4,12 @@ IMPLEMENT_SERIAL(RhombusF, CObject, 4)
 
 RhombusF::RhombusF() :RectangleF() {}
 
-
 RhombusF::RhombusF(CPoint start, CPoint end, int borderSize, COLORREF fillColor, COLORREF borderColor)
 	:RectangleF(start, end, borderSize, fillColor, borderColor)
 {
 	SetShape(start, end);
 }
+
 void RhombusF::Redefine(CPoint p1, CPoint p2)
 {
 	SetShape(p1, p2);
@@ -26,6 +26,8 @@ void RhombusF::SetShape(CPoint p1, CPoint p2) {
 
 void RhombusF::Draw(CPaintDC& dc) const
 {
+	dc.SelectObject(border);
+	dc.SelectObject(bkground);
 	CPoint points[4];
 	points[0] = P1;
 	points[2].SetPoint(P1.x, 2 * P2.y - P1.y);
