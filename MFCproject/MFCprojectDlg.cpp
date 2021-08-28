@@ -73,7 +73,7 @@ BOOL CMFCprojectDlg::OnInitDialog()
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
-	paintArea.SetRect(20, 20, windowRect.right - 250, windowRect.bottom - 50);
+	paintArea.SetRect(30, 30, windowRect.right - 250, windowRect.bottom - 50);
 	borderWidth = 1;
 	
 	return TRUE;  // return TRUE  unless you set the focus to a control
