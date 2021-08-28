@@ -8,6 +8,8 @@
 #include "afxdialogex.h"
 #include "SquareF.h"
 #include "RhombusF.h"
+#include "LineF.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -54,6 +56,7 @@ BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_EllipseBtn, &CMFCprojectDlg::OnBnClickedEllipsebtn)
 	ON_BN_CLICKED(IDC_SquareBtn, &CMFCprojectDlg::OnBnClickedSquarebtn)
 	ON_BN_CLICKED(IDC_RhombusBtn, &CMFCprojectDlg::OnBnClickedRhombusbtn)
+	ON_BN_CLICKED(IDC_LineBtn, &CMFCprojectDlg::OnBnClickedLinebtn)
 END_MESSAGE_MAP()
 
 
@@ -165,6 +168,10 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 		break;
 	case 4:
 		f = new RhombusF(start, start, borderWidth, fillColorShape, lineColor);
+		figs.Add(f);
+		break;
+	case 5:
+		f = new LineF(start, start, borderWidth, lineColor);
 		figs.Add(f);
 		break;
 	}
@@ -283,4 +290,10 @@ void CMFCprojectDlg::OnBnClickedSquarebtn()
 void CMFCprojectDlg::OnBnClickedRhombusbtn()
 {
 	futureFigureKind = 4;
+}
+
+
+void CMFCprojectDlg::OnBnClickedLinebtn()
+{
+	futureFigureKind = 5;
 }

@@ -70,4 +70,6 @@ public:
 	int borderWidth;
 private:
 	void SetImages();	
+public:
+	afx_msg void OnBnClickedLinebtn();
 };

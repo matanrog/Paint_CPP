@@ -181,6 +181,7 @@
   <ItemGroup>
     <ClInclude Include="EllipseF.h" />
     <ClInclude Include="Figure.h" />
+    <ClInclude Include="LineF.h" />
     <ClInclude Include="MFCproject.h" />
     <ClInclude Include="MFCprojectDlg.h" />
     <ClInclude Include="RectangleF.h" />
@@ -193,6 +194,7 @@
   <ItemGroup>
     <ClCompile Include="EllipseF.cpp" />
     <ClCompile Include="Figure.cpp" />
+    <ClCompile Include="LineF.cpp" />
     <ClCompile Include="MFCproject.cpp" />
     <ClCompile Include="MFCprojectDlg.cpp" />
     <ClCompile Include="RectangleF.cpp" />
