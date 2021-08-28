@@ -19,7 +19,7 @@ RectangleF::~RectangleF()
 {
 }
 
-void RectangleF::Draw(CPaintDC& dc) const
+void RectangleF::Draw(CPaintDC& dc) 
 {
 	dc.SelectObject(border);
 	dc.SelectObject(bkground);

@@ -17,7 +17,7 @@ public:
 	Figure(CPoint start, CPoint end, int borderSize = 1, COLORREF fillColor = RGB(255, 255, 255), COLORREF borderColor = RGB(0, 0, 0, 0));
 	virtual ~Figure();
 	void Serialize(CArchive& ar);
-	virtual void Draw(CPaintDC& dc) const;
+	virtual void Draw(CPaintDC& dc) ;
 	CPoint getP1() const;
 	CPoint getP2() const;
 	virtual void Redefine(CPoint p1, CPoint p2) { P1 = p1; P2 = p2; }

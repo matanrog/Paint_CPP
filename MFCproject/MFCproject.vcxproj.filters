@@ -48,6 +48,9 @@
     <ClInclude Include="LineF.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TriangleF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCproject.cpp">
@@ -75,6 +78,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LineF.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TriangleF.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -111,6 +117,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\rhombus.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SimpleTirangle.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

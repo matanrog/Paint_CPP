@@ -46,7 +46,7 @@ void Figure::Serialize(CArchive& ar)
 	}
 }
 //!! 21 e
-void Figure::Draw(CPaintDC& dc) const
+void Figure::Draw(CPaintDC& dc) 
 {
 	dc.SelectObject(border);
 	dc.SelectObject(bkground);

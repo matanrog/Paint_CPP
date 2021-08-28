@@ -28,7 +28,7 @@ void RhombusF::SetShape(CPoint p1, CPoint p2) {
 	P2 = p2;
 }
 
-void RhombusF::Draw(CPaintDC& dc) const
+void RhombusF::Draw(CPaintDC& dc) 
 {
 	dc.SelectObject(border);
 	dc.SelectObject(bkground);

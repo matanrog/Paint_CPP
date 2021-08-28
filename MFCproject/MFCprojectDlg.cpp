@@ -9,6 +9,7 @@
 #include "SquareF.h"
 #include "RhombusF.h"
 #include "LineF.h"
+#include "TriangleF.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -57,6 +58,7 @@ BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_SquareBtn, &CMFCprojectDlg::OnBnClickedSquarebtn)
 	ON_BN_CLICKED(IDC_RhombusBtn, &CMFCprojectDlg::OnBnClickedRhombusbtn)
 	ON_BN_CLICKED(IDC_LineBtn, &CMFCprojectDlg::OnBnClickedLinebtn)
+	ON_BN_CLICKED(IDC_TraBtn, &CMFCprojectDlg::OnBnClickedTrabtn)
 END_MESSAGE_MAP()
 
 
@@ -83,22 +85,21 @@ void CMFCprojectDlg::SetImages() {
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
 	HICON ellipse = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Ellipse_ICON),
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
-	HICON triangle = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Triangle_ICON),
+	HICON triangle = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_SimpleTirangle_ICON),
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
 	HICON line = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Line_ICON),
 	   IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
-	HBITMAP  square = (HBITMAP)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDB_Sqaure_BITMAP),
-		IMAGE_BITMAP, 30, 30, LR_DEFAULTCOLOR);
-	HBITMAP  rhombus = (HBITMAP)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDB_Rhombus_BITMAP),
-		IMAGE_BITMAP, 30, 30, LR_DEFAULTCOLOR);
+	HICON  square = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Sqaure_ICON),
+		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
+	HICON  rhombus = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Rhombus_ICON),
+		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
 
 	Ellipse_Btn.SetIcon(ellipse);
 	rectBtn.SetIcon(rectangle);
 	TriangleBtn.SetIcon(triangle);
 	lineBtn.SetIcon(line);
-	Square_Btn.SetBitmap(square);
-	Rhombus_Btn.SetBitmap(rhombus);
-
+	Square_Btn.SetIcon(square);
+	Rhombus_Btn.SetIcon(rhombus);
 }
 
 
@@ -172,6 +173,10 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 		break;
 	case 5:
 		f = new LineF(start, start, borderWidth, lineColor);
+		figs.Add(f);
+		break;
+	case 6:
+		f = new TriangleF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
 	}
@@ -296,4 +301,10 @@ void CMFCprojectDlg::OnBnClickedRhombusbtn()
 void CMFCprojectDlg::OnBnClickedLinebtn()
 {
 	futureFigureKind = 5;
+}
+
+
+void CMFCprojectDlg::OnBnClickedTrabtn()
+{
+	futureFigureKind = 6;
 }
