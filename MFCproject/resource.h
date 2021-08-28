@@ -11,8 +11,6 @@
 #define IDB_BITMAP1                     145
 #define IDB_Sqaure_BITMAP               145
 #define IDB_Rhombus_BITMAP              146
-#define IDC_RADIO1                      1000
-#define IDC_RADIO2                      1001
 #define IDC_BUTTON1                     1002
 #define IDC_BUTTON2                     1003
 #define ShapeColor                      1020

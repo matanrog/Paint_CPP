@@ -25,7 +25,7 @@ CMFCprojectDlg::CMFCprojectDlg(CWnd* pParent /*=nullptr*/)
 void CMFCprojectDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
-	DDX_Control(pDX, LineWidth, DropBoxWidth);
+	DDX_Control(pDX, LineWidth, m_borderWidth);
 	DDX_Control(pDX, LineColor, m_lineColor);
 	DDX_Control(pDX, ShapeColor, m_shaoeColor);
 	DDX_Control(pDX, IDC_RectBtn, rectBtn);
@@ -68,12 +68,9 @@ BOOL CMFCprojectDlg::OnInitDialog()
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
-
-	// TODO: Add extra initialization here
-	//!! 16 b
-	CheckRadioButton(IDC_RADIO1, IDC_RADIO2, IDC_RADIO1);
-	//!! 16 e
-
+	
+	borderWidth = 1;
+	
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -155,19 +152,19 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	switch (futureFigureKind)
 	{
 	case 1:
-		f = new  RectangleF(start, start, 1, fillColorShape, lineColor);
+		f = new  RectangleF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
 	case 2:
-		f = new EllipseF(start, start, 1, fillColorShape, lineColor);
+		f = new EllipseF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
 	case 3:
-		f = new SquareF(start, start, 1, fillColorShape, lineColor);
+		f = new SquareF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
 	case 4:
-		f = new RhombusF(start, start, 1, fillColorShape, lineColor);
+		f = new RhombusF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
 	}
@@ -246,7 +243,10 @@ void CMFCprojectDlg::OnBnClickedButton2()
 
 void CMFCprojectDlg::OnSelchangeLinewidth()
 {
-	// TODO: Add your control notification handler code here
+	CString width;
+	m_borderWidth.GetLBText(m_borderWidth.GetCurSel(), width);
+	borderWidth = _wtoi(width);
+	UpdateData(false);
 }
 
 

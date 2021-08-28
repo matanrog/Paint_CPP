@@ -46,28 +46,28 @@ public:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
-	CComboBox DropBoxWidth;
 	afx_msg void OnSelchangeLinewidth();
 	afx_msg void OnBnClickedShapecolor();
 	afx_msg void OnBnClickedLinecolor();
+	afx_msg void OnBnClickedRectbtn();
+	afx_msg void OnBnClickedEllipsebtn();
+	afx_msg void OnBnClickedSquarebtn();
+	afx_msg void OnBnClickedRhombusbtn();
 
+	CComboBox m_borderWidth;
+	CMFCColorButton m_lineColor;
+	CMFCColorButton m_shaoeColor;
 	COLORREF fillColorShape;
 	COLORREF lineColor;
 	CRect paintArea;
-	CMFCColorButton m_lineColor;
-	CMFCColorButton m_shaoeColor;
 	CButton rectBtn;
 	CButton Ellipse_Btn;
-
-private:
-	void SetImages();
-public:
-	afx_msg void OnBnClickedRectbtn();
-	afx_msg void OnBnClickedEllipsebtn();
 	CButton TriangleBtn;
 	CButton lineBtn;
 	CButton Square_Btn;
-	afx_msg void OnBnClickedSquarebtn();
 	CButton Rhombus_Btn;
-	afx_msg void OnBnClickedRhombusbtn();
+
+	int borderWidth;
+private:
+	void SetImages();	
 };
