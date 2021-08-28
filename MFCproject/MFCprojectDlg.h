@@ -66,6 +66,7 @@ public:
 	CButton lineBtn;
 	CButton Square_Btn;
 	CButton Rhombus_Btn;
+	RECT windowRect;
 
 	int borderWidth;
 private:
