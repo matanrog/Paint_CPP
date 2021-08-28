@@ -39,6 +39,9 @@
     <ClInclude Include="EllipseF.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SquareF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCproject.cpp">
@@ -59,6 +62,9 @@
     <ClCompile Include="RectangleF.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SquareF.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MFCproject.rc">
@@ -69,6 +75,8 @@
     <None Include="res\MFCproject.rc2">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\MFCproject.ico">

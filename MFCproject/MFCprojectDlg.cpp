@@ -6,7 +6,7 @@
 #include "MFCproject.h"
 #include "MFCprojectDlg.h"
 #include "afxdialogex.h"
-
+#include "SquareF.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -149,6 +149,10 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 		break;
 	case 2:
 		f = new EllipseF(start, start, 1, fillColorShape, lineColor);
+		figs.Add(f);
+		break;
+	case 3:
+		f = new SquareF(start, start, 1, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
 	}
