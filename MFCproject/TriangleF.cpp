@@ -20,10 +20,14 @@ void TriangleF::Draw(CPaintDC& dc)
 {
 	dc.SelectObject(border);
 	dc.SelectObject(bkground);	
-	points[0].SetPoint(P1.x,2* P2.y - P1.y);
-	points[1] = P1;
-	points[2] = P2;
+	points[0].SetPoint(P1.x, P1.y);
+	points[1].SetPoint(P2.x,P2.y);
+	points[2].SetPoint((P1.x+P2.x)/2,P2.y);
 	dc.Polygon(points, 3);
+
+	//this->points[0].SetPoint(this->getStartPoint().x, this->getEndPoint().y);
+	//this->points[1].SetPoint(this->getEndPoint().x, this->getEndPoint().y);
+	//this->points[2].SetPoint((this->getStartPoint().x + this->getEndPoint().x) / 2, this->getStartPoint().y);
 }
 
 void TriangleF::SetTrianglePoints(int index, int x, int y )

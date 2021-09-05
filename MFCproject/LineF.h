@@ -10,3 +10,4 @@ public:
 	void Draw(CPaintDC&);
 };
 
+
