@@ -195,7 +195,8 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 		end = point;
 		isPressed = false;
 		figs[figs.GetSize() - 1]->Redefine(start, end);
-		Invalidate(); //simulates the WM_PAINT message to redraw window
+		 //simulates the WM_PAINT message to redraw window
+		InvalidateRect(paintArea);
 	}
 	CDialogEx::OnLButtonUp(nFlags, point);
 }
@@ -208,7 +209,7 @@ void CMFCprojectDlg::OnMouseMove(UINT nFlags, CPoint point)
 	{
 		end = point;
 		figs[figs.GetSize()-1]->Redefine(start,end);
-		Invalidate(); //simulates the WM_PAINT message to redraw window
+		InvalidateRect(paintArea); //simulates the WM_PAINT message to redraw window
 	}
 	CDialogEx::OnMouseMove(nFlags, point);
 }
@@ -248,7 +249,7 @@ void CMFCprojectDlg::OnBnClickedButton2()
 		figs.Serialize(ar);
 		ar.Close();
 		file.Close();
-		Invalidate();
+		InvalidateRect(paintArea);
 	}
 	//!! 24 e
 }
