@@ -205,7 +205,7 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 void CMFCprojectDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: Add your message handler code here and/or call default
-	if (isPressed)
+	if (isPressed) // add a condition  to prevent going out of lines
 	{
 		end = point;
 		figs[figs.GetSize()-1]->Redefine(start,end);
