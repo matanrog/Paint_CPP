@@ -67,13 +67,13 @@ END_MESSAGE_MAP()
 BOOL CMFCprojectDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
-
 	SetImages();
+	CWnd::GetClientRect(&windowRect);
+	paintArea.SetRect(30, 30, windowRect.right - 250, windowRect.bottom - 50);
 	// Set the icon for this dialog.  The framework does this automatically
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
-	
 	borderWidth = 1;
 	
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -100,6 +100,7 @@ void CMFCprojectDlg::SetImages() {
 	lineBtn.SetIcon(line);
 	Square_Btn.SetIcon(square);
 	Rhombus_Btn.SetIcon(rhombus);
+
 }
 
 
@@ -194,7 +195,8 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 		end = point;
 		isPressed = false;
 		figs[figs.GetSize() - 1]->Redefine(start, end);
-		Invalidate(); //simulates the WM_PAINT message to redraw window
+		 //simulates the WM_PAINT message to redraw window
+		InvalidateRect(paintArea);
 	}
 	CDialogEx::OnLButtonUp(nFlags, point);
 }
@@ -203,11 +205,11 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 void CMFCprojectDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: Add your message handler code here and/or call default
-	if (isPressed)
+	if (isPressed) // add a condition  to prevent going out of lines
 	{
 		end = point;
 		figs[figs.GetSize()-1]->Redefine(start,end);
-		Invalidate(); //simulates the WM_PAINT message to redraw window
+		InvalidateRect(paintArea); //simulates the WM_PAINT message to redraw window
 	}
 	CDialogEx::OnMouseMove(nFlags, point);
 }
@@ -247,7 +249,7 @@ void CMFCprojectDlg::OnBnClickedButton2()
 		figs.Serialize(ar);
 		ar.Close();
 		file.Close();
-		Invalidate();
+		InvalidateRect(paintArea);
 	}
 	//!! 24 e
 }
