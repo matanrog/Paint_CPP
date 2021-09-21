@@ -59,6 +59,7 @@ BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_TraBtn, &CMFCprojectDlg::OnBnClickedTrabtn)
 	ON_BN_CLICKED(IDC_SaveBtn, &CMFCprojectDlg::OnBnClickedSavebtn)
 	ON_BN_CLICKED(IDC_LoadBtn, &CMFCprojectDlg::OnBnClickedLoadbtn)
+	ON_BN_CLICKED(ID_ClearBtn, &CMFCprojectDlg::OnBnClickedClearbtn)
 END_MESSAGE_MAP()
 
 
@@ -200,8 +201,6 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 	}
 	CDialogEx::OnLButtonUp(nFlags, point);
 }
-
-
 void CMFCprojectDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: Add your message handler code here and/or call default
@@ -213,6 +212,53 @@ void CMFCprojectDlg::OnMouseMove(UINT nFlags, CPoint point)
 	}
 	CDialogEx::OnMouseMove(nFlags, point);
 }
+
+#pragma region Desing
+void CMFCprojectDlg::OnSelchangeLinewidth()
+{
+	CString width;
+	m_borderWidth.GetLBText(m_borderWidth.GetCurSel(), width);
+	borderWidth = _wtoi(width);
+	UpdateData(false);
+}
+void CMFCprojectDlg::OnBnClickedShapecolor()
+{
+	fillColorShape = m_shaoeColor.GetColor();
+}
+void CMFCprojectDlg::OnBnClickedLinecolor()
+{	 
+	lineColor = m_lineColor.GetColor();
+}
+#pragma endregion
+
+#pragma region Shapes
+void CMFCprojectDlg::OnBnClickedRectbtn()
+{
+	chosenShape = RECTANGLE;
+}
+void CMFCprojectDlg::OnBnClickedEllipsebtn()
+{
+	chosenShape = ELLIPSE;
+}
+void CMFCprojectDlg::OnBnClickedSquarebtn()
+{
+	chosenShape = SQUARE;
+}
+void CMFCprojectDlg::OnBnClickedRhombusbtn()
+{
+	chosenShape = RHOMBUS;
+}
+void CMFCprojectDlg::OnBnClickedLinebtn()
+{
+	chosenShape = LINE;
+}
+void CMFCprojectDlg::OnBnClickedTrabtn()
+{
+	chosenShape = TRIANGLE;
+}
+#pragma endregion
+
+#pragma region Actions
 
 void CMFCprojectDlg::OnBnClickedSavebtn()
 {
@@ -246,59 +292,17 @@ void CMFCprojectDlg::OnBnClickedLoadbtn()
 	}
 }
 
-void CMFCprojectDlg::OnSelchangeLinewidth()
+void CMFCprojectDlg::OnBnClickedClearbtn()
 {
-	CString width;
-	m_borderWidth.GetLBText(m_borderWidth.GetCurSel(), width);
-	borderWidth = _wtoi(width);
-	UpdateData(false);
+	int size = figs.GetSize();
+	for (int i = 0; i < size; i++)
+	{
+		delete figs[0];
+		figs.RemoveAt(0);
+	}
+	InvalidateRect(paintArea);
+	chosenShape = Shapes::RECTANGLE;
+	UpdateData(FALSE);
 }
-
-
-void CMFCprojectDlg::OnBnClickedShapecolor()
-{
-	fillColorShape = m_shaoeColor.GetColor();
-}
-
-
-void CMFCprojectDlg::OnBnClickedLinecolor()
-{	 
-	lineColor = m_lineColor.GetColor();
-}
-
-
-void CMFCprojectDlg::OnBnClickedRectbtn()
-{
-	chosenShape = RECTANGLE;
-}
-
-
-void CMFCprojectDlg::OnBnClickedEllipsebtn()
-{
-	chosenShape = ELLIPSE;
-}
-
-
-void CMFCprojectDlg::OnBnClickedSquarebtn()
-{
-	chosenShape = SQUARE;
-}
-
-void CMFCprojectDlg::OnBnClickedRhombusbtn()
-{
-	chosenShape = RHOMBUS;
-}
-
-
-void CMFCprojectDlg::OnBnClickedLinebtn()
-{
-	chosenShape = LINE;
-}
-
-
-void CMFCprojectDlg::OnBnClickedTrabtn()
-{
-	chosenShape = TRIANGLE;
-}
-
+#pragma endregion
 

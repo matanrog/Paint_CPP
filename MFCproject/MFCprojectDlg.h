@@ -76,4 +76,5 @@ public:
 	afx_msg void OnBnClickedTrabtn();
 	afx_msg void OnBnClickedSavebtn();
 	afx_msg void OnBnClickedLoadbtn();
+	afx_msg void OnBnClickedClearbtn();
 };
