@@ -11,6 +11,9 @@
 #define IDI_SimpleTirangle_ICON         149
 #define IDI_Rhombus_ICON                150
 #define IDI_Sqaure_ICON                 152
+#define IDI_Clear_Icon                  153
+#define IDI_Save_ICON                   154
+#define IDI_Load_ICON                   155
 #define IDC_SaveBtn                     1002
 #define IDC_LoadBtn                     1003
 #define ShapeColor                      1020
@@ -26,14 +29,17 @@
 #define IDC_SquareBtn                   1031
 #define IDC_RhombusBtn                  1032
 #define ID_ClearBtn                     1033
+#define IDC_Actions_GC                  1034
+#define IDC_Shapes_GC                   1035
+#define IDC_Design_GC                   1036
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        153
+#define _APS_NEXT_RESOURCE_VALUE        156
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1034
+#define _APS_NEXT_CONTROL_VALUE         1037
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

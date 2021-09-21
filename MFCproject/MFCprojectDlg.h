@@ -64,6 +64,9 @@ public:
 	CButton lineBtn;
 	CButton Square_Btn;
 	CButton Rhombus_Btn;
+	CButton Save_Btn;
+	CButton Load_Btn;
+	CButton Clear_Btn;
 	RECT windowRect;
 	 
 	Shapes chosenShape = Shapes::RECTANGLE;
@@ -77,4 +80,5 @@ public:
 	afx_msg void OnBnClickedSavebtn();
 	afx_msg void OnBnClickedLoadbtn();
 	afx_msg void OnBnClickedClearbtn();
+	afx_msg void OnBnClickedOk();
 };

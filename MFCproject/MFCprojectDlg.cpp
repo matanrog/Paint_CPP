@@ -37,6 +37,9 @@ void CMFCprojectDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_LineBtn, lineBtn);
 	DDX_Control(pDX, IDC_SquareBtn, Square_Btn);
 	DDX_Control(pDX, IDC_RhombusBtn, Rhombus_Btn);
+	DDX_Control(pDX, IDC_SaveBtn, Save_Btn);
+	DDX_Control(pDX, IDC_LoadBtn, Load_Btn);
+	DDX_Control(pDX, ID_ClearBtn, Clear_Btn);
 }
 
 BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
@@ -60,6 +63,7 @@ BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_SaveBtn, &CMFCprojectDlg::OnBnClickedSavebtn)
 	ON_BN_CLICKED(IDC_LoadBtn, &CMFCprojectDlg::OnBnClickedLoadbtn)
 	ON_BN_CLICKED(ID_ClearBtn, &CMFCprojectDlg::OnBnClickedClearbtn)
+	ON_BN_CLICKED(IDOK, &CMFCprojectDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
@@ -90,9 +94,17 @@ void CMFCprojectDlg::SetImages() {
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
 	HICON line = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Line_ICON),
 	   IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
-	HICON  square = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Sqaure_ICON),
+	HICON square = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Sqaure_ICON),
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
-	HICON  rhombus = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Rhombus_ICON),
+	HICON rhombus = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Rhombus_ICON),
+		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
+
+	HICON save = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Save_ICON),
+		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
+	HICON load = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Load_ICON),
+		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
+	
+	HICON clear = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Clear_Icon),
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
 
 	Ellipse_Btn.SetIcon(ellipse);
@@ -101,6 +113,10 @@ void CMFCprojectDlg::SetImages() {
 	lineBtn.SetIcon(line);
 	Square_Btn.SetIcon(square);
 	Rhombus_Btn.SetIcon(rhombus);
+	Save_Btn.SetIcon(save);
+	Load_Btn.SetIcon(load);
+	Clear_Btn.SetIcon(clear);
+	
 
 }
 
@@ -275,7 +291,6 @@ void CMFCprojectDlg::OnBnClickedSavebtn()
 	}
 }
 
-
 void CMFCprojectDlg::OnBnClickedLoadbtn()
 {
 	CFileDialog dlg(TRUE, _T(".figs"), NULL, 0, _T("Figures (*.figs)|*.figs|All Files (*.*)|*.*||"));
@@ -306,3 +321,10 @@ void CMFCprojectDlg::OnBnClickedClearbtn()
 }
 #pragma endregion
 
+
+
+void CMFCprojectDlg::OnBnClickedOk()
+{
+	// TODO: Add your control notification handler code here
+	CDialogEx::OnOK();
+}
