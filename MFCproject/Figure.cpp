@@ -1,7 +1,6 @@
 #include "stdafx.h"  //!!! 1st include
 #include "Figure.h"
 
-//!! 22 b
 IMPLEMENT_SERIAL(Figure, CObject, 1)
 
 Figure::Figure(CPoint start, CPoint end, int borderSize, COLORREF fillColor, COLORREF borderColor) {
@@ -30,7 +29,6 @@ CPoint Figure::getP2() const
 	return P2;
 }
 
-//!! 21 b
 void Figure::Serialize(CArchive& ar)
 {
 	CObject::Serialize(ar);
@@ -52,7 +50,6 @@ void Figure::Serialize(CArchive& ar)
 		changeFigureColor(borderColor, fillColor);
 	}
 }
-//!! 21 e
 void Figure::Draw(CPaintDC& dc) 
 {
 	dc.SelectObject(FigurePen);

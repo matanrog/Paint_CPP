@@ -154,29 +154,29 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	isPressed = true;
     //!! 20 b
 	//figs.Add(new Figure(start, start));
-	switch (futureFigureKind)
+	switch (chosenShape)
 	{
-	case 1:
+	case Shapes::RECTANGLE: 
 		f = new  RectangleF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
-	case 2:
+	case Shapes::ELLIPSE:
 		f = new EllipseF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
-	case 3:
+	case Shapes::SQUARE:
 		f = new SquareF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
-	case 4:
+	case Shapes::RHOMBUS:
 		f = new RhombusF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
-	case 5:
+	case Shapes::LINE:
 		f = new LineF(start, start, borderWidth, lineColor);
 		figs.Add(f);
 		break;
-	case 6:
+	case Shapes::TRIANGLE:
 		f = new TriangleF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
@@ -246,10 +246,6 @@ void CMFCprojectDlg::OnBnClickedLoadbtn()
 	}
 }
 
-
-
-
-
 void CMFCprojectDlg::OnSelchangeLinewidth()
 {
 	CString width;
@@ -273,37 +269,36 @@ void CMFCprojectDlg::OnBnClickedLinecolor()
 
 void CMFCprojectDlg::OnBnClickedRectbtn()
 {
-	futureFigureKind = 1;
+	chosenShape = RECTANGLE;
 }
 
 
 void CMFCprojectDlg::OnBnClickedEllipsebtn()
 {
-	futureFigureKind = 2;
+	chosenShape = ELLIPSE;
 }
 
 
 void CMFCprojectDlg::OnBnClickedSquarebtn()
 {
-	futureFigureKind = 3;
+	chosenShape = SQUARE;
 }
-
 
 void CMFCprojectDlg::OnBnClickedRhombusbtn()
 {
-	futureFigureKind = 4;
+	chosenShape = RHOMBUS;
 }
 
 
 void CMFCprojectDlg::OnBnClickedLinebtn()
 {
-	futureFigureKind = 5;
+	chosenShape = LINE;
 }
 
 
 void CMFCprojectDlg::OnBnClickedTrabtn()
 {
-	futureFigureKind = 6;
+	chosenShape = TRIANGLE;
 }
 
 

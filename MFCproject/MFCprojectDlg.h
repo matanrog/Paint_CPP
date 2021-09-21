@@ -24,9 +24,7 @@ public:
 	CPoint start, end;
 	bool isPressed = false;
 	CTypedPtrArray< CObArray, Figure*> figs;
-	//!! 17 b
-	int futureFigureKind = 1; //Rectangle (2 - Ellipse)
-	//!! 17 e
+	
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
 
@@ -41,6 +39,8 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
+	enum Shapes { RECTANGLE , ELLIPSE, SQUARE , RHOMBUS , TRIANGLE, LINE };
+
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
@@ -65,6 +65,8 @@ public:
 	CButton Square_Btn;
 	CButton Rhombus_Btn;
 	RECT windowRect;
+	 
+	Shapes chosenShape = Shapes::RECTANGLE;
 
 	int borderWidth;
 private:
