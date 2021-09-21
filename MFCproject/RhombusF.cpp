@@ -30,8 +30,8 @@ void RhombusF::SetShape(CPoint p1, CPoint p2) {
 
 void RhombusF::Draw(CPaintDC& dc) 
 {
-	dc.SelectObject(border);
-	dc.SelectObject(bkground);
+	dc.SelectObject(FigurePen);
+	dc.SelectObject(FigureBrush);
 	CPoint points[4];
 	points[0] = P1;
 	points[2].SetPoint(P1.x, 2 * P2.y - P1.y);

@@ -48,8 +48,6 @@ BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
-	ON_BN_CLICKED(IDC_BUTTON1, &CMFCprojectDlg::OnBnClickedButton1)
-	ON_BN_CLICKED(IDC_BUTTON2, &CMFCprojectDlg::OnBnClickedButton2)
 	ON_CBN_SELCHANGE(LineWidth, &CMFCprojectDlg::OnSelchangeLinewidth)
 	ON_BN_CLICKED(ShapeColor, &CMFCprojectDlg::OnBnClickedShapecolor)
 	ON_BN_CLICKED(LineColor, &CMFCprojectDlg::OnBnClickedLinecolor)
@@ -59,6 +57,8 @@ BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_RhombusBtn, &CMFCprojectDlg::OnBnClickedRhombusbtn)
 	ON_BN_CLICKED(IDC_LineBtn, &CMFCprojectDlg::OnBnClickedLinebtn)
 	ON_BN_CLICKED(IDC_TraBtn, &CMFCprojectDlg::OnBnClickedTrabtn)
+	ON_BN_CLICKED(IDC_SaveBtn, &CMFCprojectDlg::OnBnClickedSavebtn)
+	ON_BN_CLICKED(IDC_LoadBtn, &CMFCprojectDlg::OnBnClickedLoadbtn)
 END_MESSAGE_MAP()
 
 
@@ -214,11 +214,8 @@ void CMFCprojectDlg::OnMouseMove(UINT nFlags, CPoint point)
 	CDialogEx::OnMouseMove(nFlags, point);
 }
 
-void CMFCprojectDlg::OnBnClickedButton1()
+void CMFCprojectDlg::OnBnClickedSavebtn()
 {
-	// TODO: Add your control notification handler code here
-	//!! 23 b
-	             // FALSE to SAVE
 	CFileDialog dlg(FALSE, _T(".figs"), NULL, 0, _T("Figures (*.figs)|*.figs|All Files (*.*)|*.*||"));
 	CString filename;
 	if (dlg.DoModal() == IDOK)
@@ -230,15 +227,11 @@ void CMFCprojectDlg::OnBnClickedButton1()
 		ar.Close();
 		file.Close();
 	}
-	//!! 23 e
 }
 
 
-void CMFCprojectDlg::OnBnClickedButton2()
+void CMFCprojectDlg::OnBnClickedLoadbtn()
 {
-	// TODO: Add your control notification handler code here
-	//!! 24 b
-			     // TRUE to LOAD
 	CFileDialog dlg(TRUE, _T(".figs"), NULL, 0, _T("Figures (*.figs)|*.figs|All Files (*.*)|*.*||"));
 	CString filename;
 	if (dlg.DoModal() == IDOK)
@@ -251,8 +244,10 @@ void CMFCprojectDlg::OnBnClickedButton2()
 		file.Close();
 		InvalidateRect(paintArea);
 	}
-	//!! 24 e
 }
+
+
+
 
 
 void CMFCprojectDlg::OnSelchangeLinewidth()
@@ -310,3 +305,5 @@ void CMFCprojectDlg::OnBnClickedTrabtn()
 {
 	futureFigureKind = 6;
 }
+
+

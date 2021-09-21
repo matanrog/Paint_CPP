@@ -11,8 +11,8 @@
 #define IDI_SimpleTirangle_ICON         149
 #define IDI_Rhombus_ICON                150
 #define IDI_Sqaure_ICON                 152
-#define IDC_BUTTON1                     1002
-#define IDC_BUTTON2                     1003
+#define IDC_SaveBtn                     1002
+#define IDC_LoadBtn                     1003
 #define ShapeColor                      1020
 #define LineColor                       1021
 #define LineWidth                       1022

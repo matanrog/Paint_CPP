@@ -18,8 +18,8 @@ TriangleF::~TriangleF() {
 
 void TriangleF::Draw(CPaintDC& dc) 
 {
-	dc.SelectObject(border);
-	dc.SelectObject(bkground);	
+	dc.SelectObject(FigurePen);
+	dc.SelectObject(FigureBrush);	
 	points[0].SetPoint(P1.x, P1.y);
 	points[1].SetPoint(P2.x,P2.y);
 	points[2].SetPoint((P1.x+P2.x)/2,P2.y);

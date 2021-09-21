@@ -44,8 +44,6 @@ public:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
-	afx_msg void OnBnClickedButton1();
-	afx_msg void OnBnClickedButton2();
 	afx_msg void OnSelchangeLinewidth();
 	afx_msg void OnBnClickedShapecolor();
 	afx_msg void OnBnClickedLinecolor();
@@ -74,4 +72,6 @@ private:
 public:
 	afx_msg void OnBnClickedLinebtn();
 	afx_msg void OnBnClickedTrabtn();
+	afx_msg void OnBnClickedSavebtn();
+	afx_msg void OnBnClickedLoadbtn();
 };
