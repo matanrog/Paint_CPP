@@ -14,6 +14,12 @@ RhombusF::~RhombusF()
 {
 }
 
+bool RhombusF::isInside(const CPoint& P) const
+{
+	return ((P.x <= P2.x && P.x >= 2 * P1.x - P2.x && P.y >= P1.y && P.y <= 2 * P2.y - P1.y)
+		|| (P.x >= P2.x && P.x <= 2 * P1.x - P2.x && P.y <= P1.y && P.y >= 2 * P2.y - P1.y));
+}
+
 void RhombusF::Redefine(CPoint p1, CPoint p2)
 {
 	SetShape(p1, p2);

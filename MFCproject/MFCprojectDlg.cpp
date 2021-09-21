@@ -40,6 +40,9 @@ void CMFCprojectDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_SaveBtn, Save_Btn);
 	DDX_Control(pDX, IDC_LoadBtn, Load_Btn);
 	DDX_Control(pDX, ID_ClearBtn, Clear_Btn);
+	DDX_Control(pDX, ID_ClearBtn, Clear_Btn);
+	DDX_Control(pDX, IDC_ResizeBtn, Resize_Btn);
+	
 }
 
 BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
@@ -64,6 +67,7 @@ BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_LoadBtn, &CMFCprojectDlg::OnBnClickedLoadbtn)
 	ON_BN_CLICKED(ID_ClearBtn, &CMFCprojectDlg::OnBnClickedClearbtn)
 	ON_BN_CLICKED(IDOK, &CMFCprojectDlg::OnBnClickedOk)
+	ON_BN_CLICKED(IDC_ResizeBtn, &CMFCprojectDlg::OnBnClickedResizebtn)
 END_MESSAGE_MAP()
 
 
@@ -103,6 +107,8 @@ void CMFCprojectDlg::SetImages() {
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
 	HICON load = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Load_ICON),
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
+	HICON resize = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Resize_ICON),
+		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
 	
 	HICON clear = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Clear_Icon),
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
@@ -115,6 +121,7 @@ void CMFCprojectDlg::SetImages() {
 	Rhombus_Btn.SetIcon(rhombus);
 	Save_Btn.SetIcon(save);
 	Load_Btn.SetIcon(load);
+	Resize_Btn.SetIcon(resize);
 	Clear_Btn.SetIcon(clear);
 	
 
@@ -165,39 +172,50 @@ HCURSOR CMFCprojectDlg::OnQueryDragIcon()
 
 void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: Add your message handler code here and/or call default
 	start = point;
 	Figure* f;
 	isPressed = true;
     //!! 20 b
 	//figs.Add(new Figure(start, start));
-	switch (chosenShape)
+	switch (chosenAction)
 	{
-	case Shapes::RECTANGLE: 
+	case ShapesAndActions::RECTANGLE:
 		f = new  RectangleF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
-	case Shapes::ELLIPSE:
+	case ShapesAndActions::ELLIPSE:
 		f = new EllipseF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
-	case Shapes::SQUARE:
+	case ShapesAndActions::SQUARE:
 		f = new SquareF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
-	case Shapes::RHOMBUS:
+	case ShapesAndActions::RHOMBUS:
 		f = new RhombusF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
-	case Shapes::LINE:
+	case ShapesAndActions::LINE:
 		f = new LineF(start, start, borderWidth, lineColor);
 		figs.Add(f);
 		break;
-	case Shapes::TRIANGLE:
+	case ShapesAndActions::TRIANGLE:
 		f = new TriangleF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
+	case ShapesAndActions::RESIZE_SHAPE:
+		
+		for (int i = 0; i < figs.GetSize(); i++)
+		{
+			if (figs[i]->isInside(start)) {
+				figs[i]->Redefine(figs[i]->P1, point);
+				UpdateData(FALSE);
+
+				break;
+			}
+		}
 	}
+	
 	InvalidateRect(paintArea);
 	//!! 20 e
 	CDialogEx::OnLButtonDown(nFlags, point);
@@ -208,7 +226,7 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 	// TODO: Add your message handler code here and/or call default
 	
 	if (isPressed)
-	{
+	{	
 		end = point;
 		isPressed = false;
 		figs[figs.GetSize() - 1]->Redefine(start, end);
@@ -250,27 +268,27 @@ void CMFCprojectDlg::OnBnClickedLinecolor()
 #pragma region Shapes
 void CMFCprojectDlg::OnBnClickedRectbtn()
 {
-	chosenShape = RECTANGLE;
+	chosenAction = RECTANGLE;
 }
 void CMFCprojectDlg::OnBnClickedEllipsebtn()
 {
-	chosenShape = ELLIPSE;
+	chosenAction = ELLIPSE;
 }
 void CMFCprojectDlg::OnBnClickedSquarebtn()
 {
-	chosenShape = SQUARE;
+	chosenAction = SQUARE;
 }
 void CMFCprojectDlg::OnBnClickedRhombusbtn()
 {
-	chosenShape = RHOMBUS;
+	chosenAction = RHOMBUS;
 }
 void CMFCprojectDlg::OnBnClickedLinebtn()
 {
-	chosenShape = LINE;
+	chosenAction = LINE;
 }
 void CMFCprojectDlg::OnBnClickedTrabtn()
 {
-	chosenShape = TRIANGLE;
+	chosenAction = TRIANGLE;
 }
 #pragma endregion
 
@@ -316,7 +334,7 @@ void CMFCprojectDlg::OnBnClickedClearbtn()
 		figs.RemoveAt(0);
 	}
 	InvalidateRect(paintArea);
-	chosenShape = Shapes::RECTANGLE;
+	chosenAction = ShapesAndActions::RECTANGLE;
 	UpdateData(FALSE);
 }
 #pragma endregion
@@ -327,4 +345,10 @@ void CMFCprojectDlg::OnBnClickedOk()
 {
 	// TODO: Add your control notification handler code here
 	CDialogEx::OnOK();
+}
+
+
+void CMFCprojectDlg::OnBnClickedResizebtn()
+{
+	chosenAction = ShapesAndActions::RESIZE_SHAPE;
 }

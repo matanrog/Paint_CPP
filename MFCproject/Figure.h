@@ -18,7 +18,7 @@ public:
 	virtual void Draw(CPaintDC& dc) ;
 	CPoint getP1() const;
 	CPoint getP2() const;
-	virtual void Redefine(CPoint p1, CPoint p2) { P1 = p1; P2 = p2; }
+	virtual void Redefine(CPoint p1, CPoint p2);
 	virtual bool isInside(const CPoint& P) const;
 	virtual void Shift(int dx, int dy);
 	void changeFigureColor(COLORREF penColor, COLORREF brushColor);

@@ -66,7 +66,11 @@ void Figure::Shift(int dx, int dy)
 	P1 = P1 + CPoint(dx, dy);
 	P2 = P2 + CPoint(dx, dy);
 }
-
+void Figure::Redefine(CPoint p1, CPoint p2)
+{
+	this->P1 = p1;
+	this->P2 = p2;
+}
 void Figure::changeFigureColor(COLORREF pen, COLORREF brush) {
 	this->fillColor = fillColor;
 	this->FigureBrush.DeleteObject();

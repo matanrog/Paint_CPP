@@ -16,6 +16,12 @@ RectangleF::~RectangleF()
 {
 }
 
+bool RectangleF::isInside(const CPoint& P) const
+{
+	return ((P1.x <= P.x && P1.y <= P.y && P2.x >= P.x && P2.y >= P.y)
+		|| (P2.x <= P.x && P2.y <= P.y && P1.x >= P.x && P1.y >= P.y));
+}
+
 void RectangleF::Draw(CPaintDC& dc) 
 {
 	dc.SelectObject(FigurePen);

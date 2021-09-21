@@ -39,7 +39,17 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
-	enum Shapes { RECTANGLE , ELLIPSE, SQUARE , RHOMBUS , TRIANGLE, LINE };
+	enum ShapesAndActions { 
+		RECTANGLE = 10 ,
+		ELLIPSE,
+		SQUARE ,
+		RHOMBUS , 
+		TRIANGLE, 
+		LINE , 
+		RESIZE_SHAPE , 
+		DELETE_SHAPE
+	};
+	
 
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
@@ -51,6 +61,14 @@ public:
 	afx_msg void OnBnClickedEllipsebtn();
 	afx_msg void OnBnClickedSquarebtn();
 	afx_msg void OnBnClickedRhombusbtn();
+	afx_msg void OnBnClickedLinebtn();
+	afx_msg void OnBnClickedTrabtn();
+	afx_msg void OnBnClickedSavebtn();
+	afx_msg void OnBnClickedLoadbtn();
+	afx_msg void OnBnClickedClearbtn();
+	afx_msg void OnBnClickedOk();
+	afx_msg void OnBnClickedResizebtn();
+
 
 	CComboBox m_borderWidth;
 	CMFCColorButton m_lineColor;
@@ -66,19 +84,15 @@ public:
 	CButton Rhombus_Btn;
 	CButton Save_Btn;
 	CButton Load_Btn;
+	CButton Resize_Btn;
 	CButton Clear_Btn;
 	RECT windowRect;
 	 
-	Shapes chosenShape = Shapes::RECTANGLE;
+	int chosenAction = ShapesAndActions::RECTANGLE;
 
 	int borderWidth;
 private:
 	void SetImages();	
 public:
-	afx_msg void OnBnClickedLinebtn();
-	afx_msg void OnBnClickedTrabtn();
-	afx_msg void OnBnClickedSavebtn();
-	afx_msg void OnBnClickedLoadbtn();
-	afx_msg void OnBnClickedClearbtn();
-	afx_msg void OnBnClickedOk();
+	
 };
