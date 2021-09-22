@@ -220,11 +220,15 @@
     <None Include="res\MFCproject.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\clear.ico" />
     <Image Include="res\ellipse.ico" />
     <Image Include="res\line.ico" />
+    <Image Include="res\load.ico" />
     <Image Include="res\MFCproject.ico" />
     <Image Include="res\rectangle.ico" />
+    <Image Include="res\resize.ico" />
     <Image Include="res\rhombus.ico" />
+    <Image Include="res\save.ico" />
     <Image Include="res\SimpleTirangle.ico" />
     <Image Include="res\sqaure.ico" />
     <Image Include="res\triangle.ico" />

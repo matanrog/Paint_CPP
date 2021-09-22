@@ -12,7 +12,7 @@ LineF::~LineF() {
 
 }
 void LineF::Draw(CPaintDC& dc)  {
-	dc.SelectObject(this->border);
+	dc.SelectObject(this->FigurePen);
 	dc.MoveTo(this->P1);
 	dc.LineTo(this->P2);
 }

@@ -123,5 +123,17 @@
     <Image Include="res\SimpleTirangle.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\clear.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\save.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\load.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\resize.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -37,6 +37,12 @@ void CMFCprojectDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_LineBtn, lineBtn);
 	DDX_Control(pDX, IDC_SquareBtn, Square_Btn);
 	DDX_Control(pDX, IDC_RhombusBtn, Rhombus_Btn);
+	DDX_Control(pDX, IDC_SaveBtn, Save_Btn);
+	DDX_Control(pDX, IDC_LoadBtn, Load_Btn);
+	DDX_Control(pDX, ID_ClearBtn, Clear_Btn);
+	DDX_Control(pDX, ID_ClearBtn, Clear_Btn);
+	DDX_Control(pDX, IDC_ResizeBtn, Resize_Btn);
+	
 }
 
 BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
@@ -48,8 +54,6 @@ BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
-	ON_BN_CLICKED(IDC_BUTTON1, &CMFCprojectDlg::OnBnClickedButton1)
-	ON_BN_CLICKED(IDC_BUTTON2, &CMFCprojectDlg::OnBnClickedButton2)
 	ON_CBN_SELCHANGE(LineWidth, &CMFCprojectDlg::OnSelchangeLinewidth)
 	ON_BN_CLICKED(ShapeColor, &CMFCprojectDlg::OnBnClickedShapecolor)
 	ON_BN_CLICKED(LineColor, &CMFCprojectDlg::OnBnClickedLinecolor)
@@ -59,6 +63,11 @@ BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_RhombusBtn, &CMFCprojectDlg::OnBnClickedRhombusbtn)
 	ON_BN_CLICKED(IDC_LineBtn, &CMFCprojectDlg::OnBnClickedLinebtn)
 	ON_BN_CLICKED(IDC_TraBtn, &CMFCprojectDlg::OnBnClickedTrabtn)
+	ON_BN_CLICKED(IDC_SaveBtn, &CMFCprojectDlg::OnBnClickedSavebtn)
+	ON_BN_CLICKED(IDC_LoadBtn, &CMFCprojectDlg::OnBnClickedLoadbtn)
+	ON_BN_CLICKED(ID_ClearBtn, &CMFCprojectDlg::OnBnClickedClearbtn)
+	ON_BN_CLICKED(IDOK, &CMFCprojectDlg::OnBnClickedOk)
+	ON_BN_CLICKED(IDC_ResizeBtn, &CMFCprojectDlg::OnBnClickedResizebtn)
 END_MESSAGE_MAP()
 
 
@@ -89,9 +98,19 @@ void CMFCprojectDlg::SetImages() {
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
 	HICON line = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Line_ICON),
 	   IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
-	HICON  square = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Sqaure_ICON),
+	HICON square = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Sqaure_ICON),
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
-	HICON  rhombus = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Rhombus_ICON),
+	HICON rhombus = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Rhombus_ICON),
+		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
+
+	HICON save = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Save_ICON),
+		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
+	HICON load = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Load_ICON),
+		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
+	HICON resize = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Resize_ICON),
+		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
+	
+	HICON clear = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Clear_Icon),
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
 
 	Ellipse_Btn.SetIcon(ellipse);
@@ -100,6 +119,11 @@ void CMFCprojectDlg::SetImages() {
 	lineBtn.SetIcon(line);
 	Square_Btn.SetIcon(square);
 	Rhombus_Btn.SetIcon(rhombus);
+	Save_Btn.SetIcon(save);
+	Load_Btn.SetIcon(load);
+	Resize_Btn.SetIcon(resize);
+	Clear_Btn.SetIcon(clear);
+	
 
 }
 
@@ -148,39 +172,50 @@ HCURSOR CMFCprojectDlg::OnQueryDragIcon()
 
 void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: Add your message handler code here and/or call default
 	start = point;
 	Figure* f;
 	isPressed = true;
     //!! 20 b
 	//figs.Add(new Figure(start, start));
-	switch (futureFigureKind)
+	switch (chosenAction)
 	{
-	case 1:
+	case ShapesAndActions::RECTANGLE:
 		f = new  RectangleF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
-	case 2:
+	case ShapesAndActions::ELLIPSE:
 		f = new EllipseF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
-	case 3:
+	case ShapesAndActions::SQUARE:
 		f = new SquareF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
-	case 4:
+	case ShapesAndActions::RHOMBUS:
 		f = new RhombusF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
-	case 5:
+	case ShapesAndActions::LINE:
 		f = new LineF(start, start, borderWidth, lineColor);
 		figs.Add(f);
 		break;
-	case 6:
+	case ShapesAndActions::TRIANGLE:
 		f = new TriangleF(start, start, borderWidth, fillColorShape, lineColor);
 		figs.Add(f);
 		break;
+	case ShapesAndActions::RESIZE_SHAPE:
+		
+		for (int i = 0; i < figs.GetSize(); i++)
+		{
+			if (figs[i]->isInside(start)) {
+				figs[i]->Redefine(figs[i]->P1, point);
+				UpdateData(FALSE);
+
+				break;
+			}
+		}
 	}
+	
 	InvalidateRect(paintArea);
 	//!! 20 e
 	CDialogEx::OnLButtonDown(nFlags, point);
@@ -191,7 +226,7 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 	// TODO: Add your message handler code here and/or call default
 	
 	if (isPressed)
-	{
+	{	
 		end = point;
 		isPressed = false;
 		figs[figs.GetSize() - 1]->Redefine(start, end);
@@ -200,8 +235,6 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 	}
 	CDialogEx::OnLButtonUp(nFlags, point);
 }
-
-
 void CMFCprojectDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: Add your message handler code here and/or call default
@@ -214,11 +247,55 @@ void CMFCprojectDlg::OnMouseMove(UINT nFlags, CPoint point)
 	CDialogEx::OnMouseMove(nFlags, point);
 }
 
-void CMFCprojectDlg::OnBnClickedButton1()
+#pragma region Desing
+void CMFCprojectDlg::OnSelchangeLinewidth()
 {
-	// TODO: Add your control notification handler code here
-	//!! 23 b
-	             // FALSE to SAVE
+	CString width;
+	m_borderWidth.GetLBText(m_borderWidth.GetCurSel(), width);
+	borderWidth = _wtoi(width);
+	UpdateData(false);
+}
+void CMFCprojectDlg::OnBnClickedShapecolor()
+{
+	fillColorShape = m_shaoeColor.GetColor();
+}
+void CMFCprojectDlg::OnBnClickedLinecolor()
+{	 
+	lineColor = m_lineColor.GetColor();
+}
+#pragma endregion
+
+#pragma region Shapes
+void CMFCprojectDlg::OnBnClickedRectbtn()
+{
+	chosenAction = RECTANGLE;
+}
+void CMFCprojectDlg::OnBnClickedEllipsebtn()
+{
+	chosenAction = ELLIPSE;
+}
+void CMFCprojectDlg::OnBnClickedSquarebtn()
+{
+	chosenAction = SQUARE;
+}
+void CMFCprojectDlg::OnBnClickedRhombusbtn()
+{
+	chosenAction = RHOMBUS;
+}
+void CMFCprojectDlg::OnBnClickedLinebtn()
+{
+	chosenAction = LINE;
+}
+void CMFCprojectDlg::OnBnClickedTrabtn()
+{
+	chosenAction = TRIANGLE;
+}
+#pragma endregion
+
+#pragma region Actions
+
+void CMFCprojectDlg::OnBnClickedSavebtn()
+{
 	CFileDialog dlg(FALSE, _T(".figs"), NULL, 0, _T("Figures (*.figs)|*.figs|All Files (*.*)|*.*||"));
 	CString filename;
 	if (dlg.DoModal() == IDOK)
@@ -230,15 +307,10 @@ void CMFCprojectDlg::OnBnClickedButton1()
 		ar.Close();
 		file.Close();
 	}
-	//!! 23 e
 }
 
-
-void CMFCprojectDlg::OnBnClickedButton2()
+void CMFCprojectDlg::OnBnClickedLoadbtn()
 {
-	// TODO: Add your control notification handler code here
-	//!! 24 b
-			     // TRUE to LOAD
 	CFileDialog dlg(TRUE, _T(".figs"), NULL, 0, _T("Figures (*.figs)|*.figs|All Files (*.*)|*.*||"));
 	CString filename;
 	if (dlg.DoModal() == IDOK)
@@ -251,62 +323,32 @@ void CMFCprojectDlg::OnBnClickedButton2()
 		file.Close();
 		InvalidateRect(paintArea);
 	}
-	//!! 24 e
 }
 
-
-void CMFCprojectDlg::OnSelchangeLinewidth()
+void CMFCprojectDlg::OnBnClickedClearbtn()
 {
-	CString width;
-	m_borderWidth.GetLBText(m_borderWidth.GetCurSel(), width);
-	borderWidth = _wtoi(width);
-	UpdateData(false);
+	int size = figs.GetSize();
+	for (int i = 0; i < size; i++)
+	{
+		delete figs[0];
+		figs.RemoveAt(0);
+	}
+	InvalidateRect(paintArea);
+	chosenAction = ShapesAndActions::RECTANGLE;
+	UpdateData(FALSE);
 }
+#pragma endregion
 
 
-void CMFCprojectDlg::OnBnClickedShapecolor()
+
+void CMFCprojectDlg::OnBnClickedOk()
 {
-	fillColorShape = m_shaoeColor.GetColor();
+	// TODO: Add your control notification handler code here
+	CDialogEx::OnOK();
 }
 
 
-void CMFCprojectDlg::OnBnClickedLinecolor()
-{	 
-	lineColor = m_lineColor.GetColor();
-}
-
-
-void CMFCprojectDlg::OnBnClickedRectbtn()
+void CMFCprojectDlg::OnBnClickedResizebtn()
 {
-	futureFigureKind = 1;
-}
-
-
-void CMFCprojectDlg::OnBnClickedEllipsebtn()
-{
-	futureFigureKind = 2;
-}
-
-
-void CMFCprojectDlg::OnBnClickedSquarebtn()
-{
-	futureFigureKind = 3;
-}
-
-
-void CMFCprojectDlg::OnBnClickedRhombusbtn()
-{
-	futureFigureKind = 4;
-}
-
-
-void CMFCprojectDlg::OnBnClickedLinebtn()
-{
-	futureFigureKind = 5;
-}
-
-
-void CMFCprojectDlg::OnBnClickedTrabtn()
-{
-	futureFigureKind = 6;
+	chosenAction = ShapesAndActions::RESIZE_SHAPE;
 }
