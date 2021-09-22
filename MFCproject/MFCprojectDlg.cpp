@@ -176,75 +176,82 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	Figure* f;
 	isPressed = true;
     //!! 20 b
-	//figs.Add(new Figure(start, start));
-	switch (chosenAction)
+	figs.Add(new Figure(start, start));
+	if (point.x >= paintArea.TopLeft().x && point.x <= paintArea.BottomRight().x && point.y >= paintArea.TopLeft().y && point.y <= paintArea.BottomRight().y)
 	{
-	case ShapesAndActions::RECTANGLE:
-		f = new  RectangleF(start, start, borderWidth, fillColorShape, lineColor);
-		figs.Add(f);
-		break;
-	case ShapesAndActions::ELLIPSE:
-		f = new EllipseF(start, start, borderWidth, fillColorShape, lineColor);
-		figs.Add(f);
-		break;
-	case ShapesAndActions::SQUARE:
-		f = new SquareF(start, start, borderWidth, fillColorShape, lineColor);
-		figs.Add(f);
-		break;
-	case ShapesAndActions::RHOMBUS:
-		f = new RhombusF(start, start, borderWidth, fillColorShape, lineColor);
-		figs.Add(f);
-		break;
-	case ShapesAndActions::LINE:
-		f = new LineF(start, start, borderWidth, lineColor);
-		figs.Add(f);
-		break;
-	case ShapesAndActions::TRIANGLE:
-		f = new TriangleF(start, start, borderWidth, fillColorShape, lineColor);
-		figs.Add(f);
-		break;
-	case ShapesAndActions::RESIZE_SHAPE:
-		
-		for (int i = 0; i < figs.GetSize(); i++)
+		switch (chosenAction)
 		{
-			if (figs[i]->isInside(start)) {
-				figs[i]->Redefine(figs[i]->P1, point);
-				UpdateData(FALSE);
+		case ShapesAndActions::RECTANGLE:
+			f = new  RectangleF(start, start, borderWidth, fillColorShape, lineColor);
+			figs.Add(f);
+			break;
+		case ShapesAndActions::ELLIPSE:
+			f = new EllipseF(start, start, borderWidth, fillColorShape, lineColor);
+			figs.Add(f);
+			break;
+		case ShapesAndActions::SQUARE:
+			f = new SquareF(start, start, borderWidth, fillColorShape, lineColor);
+			figs.Add(f);
+			break;
+		case ShapesAndActions::RHOMBUS:
+			f = new RhombusF(start, start, borderWidth, fillColorShape, lineColor);
+			figs.Add(f);
+			break;
+		case ShapesAndActions::LINE:
+			f = new LineF(start, start, borderWidth, lineColor);
+			figs.Add(f);
+			break;
+		case ShapesAndActions::TRIANGLE:
+			f = new TriangleF(start, start, borderWidth, fillColorShape, lineColor);
+			figs.Add(f);
+			break;
+		case ShapesAndActions::RESIZE_SHAPE:
 
-				break;
+			for (int i = 0; i < figs.GetSize(); i++)
+			{
+				if (figs[i]->isInside(start)) {
+					figs[i]->Redefine(figs[i]->P1, point);
+					UpdateData(FALSE);
+
+					break;
+				}
 			}
 		}
+		InvalidateRect(paintArea);
+		//!! 20 e
+		CDialogEx::OnLButtonDown(nFlags, point);
 	}
-	
-	InvalidateRect(paintArea);
-	//!! 20 e
-	CDialogEx::OnLButtonDown(nFlags, point);
 }
 
 void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	// TODO: Add your message handler code here and/or call default
-	
-	if (isPressed)
-	{	
-		end = point;
-		isPressed = false;
-		figs[figs.GetSize() - 1]->Redefine(start, end);
-		 //simulates the WM_PAINT message to redraw window
-		InvalidateRect(paintArea);
+	if (point.x >= paintArea.TopLeft().x && point.x <= paintArea.BottomRight().x && point.y >= paintArea.TopLeft().y && point.y <= paintArea.BottomRight().y)
+	{
+		if (isPressed)
+		{
+			end = point;
+			isPressed = false;
+			figs[figs.GetSize() - 1]->Redefine(start, end);
+			//simulates the WM_PAINT message to redraw window
+			InvalidateRect(paintArea);
+		}
+		CDialogEx::OnLButtonUp(nFlags, point);
 	}
-	CDialogEx::OnLButtonUp(nFlags, point);
 }
 void CMFCprojectDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO: Add your message handler code here and/or call default
-	if (isPressed) // add a condition  to prevent going out of lines
+	if (point.x >= paintArea.TopLeft().x && point.x <= paintArea.BottomRight().x && point.y >= paintArea.TopLeft().y && point.y <= paintArea.BottomRight().y)
 	{
-		end = point;
-		figs[figs.GetSize()-1]->Redefine(start,end);
-		InvalidateRect(paintArea); //simulates the WM_PAINT message to redraw window
+		// TODO: Add your message handler code here and/or call default
+		if (isPressed) // add a condition  to prevent going out of lines
+		{
+			end = point;
+			figs[figs.GetSize() - 1]->Redefine(start, end);
+			InvalidateRect(paintArea); //simulates the WM_PAINT message to redraw window
+		}
+		CDialogEx::OnMouseMove(nFlags, point);
 	}
-	CDialogEx::OnMouseMove(nFlags, point);
 }
 
 #pragma region Desing
