@@ -155,11 +155,11 @@ void CMFCprojectDlg::OnPaint()
 	{
 		CPaintDC dc(this);
 		// Draw paint area
-		dc.Rectangle(paintArea);
-		for (int i = 0; i < figs.GetSize(); i++) {
-			figs[i]->Draw(dc);
-		}
-		CDialogEx::OnPaint();
+			dc.Rectangle(paintArea);
+			for (int i = 0; i < figs.GetSize(); i++) {
+				figs[i]->Draw(dc);
+			}
+			CDialogEx::OnPaint();
 	}
 }
 
