@@ -222,6 +222,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\clear.ico" />
+    <Image Include="res\deleteShape.ico" />
     <Image Include="res\ellipse.ico" />
     <Image Include="res\line.ico" />
     <Image Include="res\load.ico" />

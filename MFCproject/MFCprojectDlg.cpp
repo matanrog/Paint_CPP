@@ -39,9 +39,8 @@ void CMFCprojectDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_SaveBtn, Save_Btn);
 	DDX_Control(pDX, IDC_LoadBtn, Load_Btn);
 	DDX_Control(pDX, ID_ClearBtn, Clear_Btn);
-	DDX_Control(pDX, ID_ClearBtn, Clear_Btn);
 	DDX_Control(pDX, IDC_ResizeBtn, Resize_Btn);
-	
+	DDX_Control(pDX, IDC_DeleteShape_Btn, DeleteShape_Btn);
 }
 
 BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
@@ -66,6 +65,7 @@ BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_LoadBtn, &CMFCprojectDlg::OnBnClickedLoadbtn)
 	ON_BN_CLICKED(ID_ClearBtn, &CMFCprojectDlg::OnBnClickedClearbtn)
 	ON_BN_CLICKED(IDC_ResizeBtn, &CMFCprojectDlg::OnBnClickedResizebtn)
+	ON_BN_CLICKED(IDC_DeleteShape_Btn, &CMFCprojectDlg::OnBnClickedDeleteshapeBtn)
 END_MESSAGE_MAP()
 
 
@@ -116,6 +116,9 @@ void CMFCprojectDlg::SetImages() {
 	HICON clear = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_Clear_Icon),
 		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
 
+	HICON deleteIcon = (HICON)LoadImage(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDI_deleteShape_ICON),
+		IMAGE_ICON, 30, 30, LR_DEFAULTCOLOR);
+
 	Ellipse_Btn.SetIcon(ellipse);
 	rectBtn.SetIcon(rectangle);
 	TriangleBtn.SetIcon(triangle);
@@ -126,6 +129,8 @@ void CMFCprojectDlg::SetImages() {
 	Load_Btn.SetIcon(load);
 	Resize_Btn.SetIcon(resize);
 	Clear_Btn.SetIcon(clear);
+	DeleteShape_Btn.SetIcon(deleteIcon);
+
 	
 
 }
@@ -174,6 +179,7 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	start = point;
 	Figure* f;
 	isPressed = true;
+	int index = GetShapeIndex(start);
 	//figs.Add(new Figure(start, start));
 	if (isValidToPaint(point))
 	{
@@ -203,23 +209,20 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 			f = new TriangleF(start, start, borderWidth, fillColorShape, lineColor);
 			figs.Add(f);
 			break;
-		case ShapesAndActions::MOVE_SHAPE:
-			/*for (int i = 0; i < figs.GetSize(); i++)
-			{
-				if (figs[i]->isInside(start)) {
-					figs[i]->Redefine(figs[i]->P1, point);
-					UpdateData(FALSE);
+		case ShapesAndActions::DELETE_SHAPE:
+			if (figs.IsEmpty())
+				break;
+			if (index != -1) {
+				this->selectedShpaeIndex = index;
+			}
 
-					break;
-				}
-			}*/
+			break;
+		case ShapesAndActions::MOVE_SHAPE:
 			if (figs.IsEmpty())
 				break;
 			this->startPoint = point;
-			int index = GetShapeIndex(start);
 			if (index != -1) {
 				this->selectedShpaeIndex = index;
-				//UpdateData(FALSE);
 			}
 
 			break;
@@ -241,8 +244,17 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 			//figs[figs.GetSize() - 1]->Redefine(start, end);
 			InvalidateRect(paintArea);
 		}
-		if (chosenAction == ShapesAndActions::MOVE_SHAPE) {
-			this->selectedShpaeIndex = -1;
+		if (!figs.IsEmpty())
+		{
+			if (chosenAction == ShapesAndActions::MOVE_SHAPE) {
+				this->selectedShpaeIndex = -1;
+			}
+			if (chosenAction == ShapesAndActions::DELETE_SHAPE)
+			{
+				delete figs[this->selectedShpaeIndex];
+				figs.RemoveAt(this->selectedShpaeIndex);
+				this->selectedShpaeIndex = -1;
+			}
 		}
 		CDialogEx::OnLButtonUp(nFlags, point);
 	}
@@ -374,6 +386,11 @@ void CMFCprojectDlg::OnBnClickedResizebtn()
 {
 	chosenAction = ShapesAndActions::MOVE_SHAPE;
 }
+void CMFCprojectDlg::OnBnClickedDeleteshapeBtn()
+{
+	chosenAction = ShapesAndActions::DELETE_SHAPE;
+}
+
 #pragma endregion
 
 
@@ -393,3 +410,4 @@ int CMFCprojectDlg::GetShapeIndex(CPoint point) {
 	{
 
 	}*/
+

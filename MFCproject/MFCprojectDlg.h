@@ -75,6 +75,7 @@ public:
 	CButton Load_Btn;
 	CButton Resize_Btn;
 	CButton Clear_Btn;
+	CButton DeleteShape_Btn;
 	RECT windowRect;
 	int selectedShpaeIndex;
 	bool isValidToPaint(CPoint point);
@@ -85,4 +86,5 @@ private:
 	void SetImages();	
 public:
 	
+	afx_msg void OnBnClickedDeleteshapeBtn();
 };
