@@ -30,11 +30,12 @@ CPoint Figure::getP2() const
 }
 void Figure::MoveTo(int x, int y, int startX, int startY)
 {
-	int moveXBy = x - startX, moveYBy = y - startY;
-	//this->P1.SetPoint(this->P1.x + moveXBy, this->P1.y + moveYBy);
-	//this->P2.SetPoint(this->P2.x + moveXBy, this->P2.y + moveYBy);
-	this->P1.SetPoint(this->P1.x + 20, this->P1.y + 20);
-	this->P2.SetPoint(this->P2.x + 20, this->P2.y + 20);
+	int moveXBy = x - startX;
+	int moveYBy = y - startY;
+	this->P1.SetPoint(this->P1.x + moveXBy, this->P1.y + moveYBy);
+	this->P2.SetPoint(this->P2.x + moveXBy, this->P2.y + moveYBy);
+	//this->P1.SetPoint(this->P1.x, this->P1.y);
+	//this->P2.SetPoint(this->P2.x, this->P2.y);
 
 }
 void Figure::Serialize(CArchive& ar)

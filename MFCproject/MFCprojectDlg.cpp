@@ -238,7 +238,7 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 		{
 			end = point;
 			isPressed = false;
-			figs[figs.GetSize() - 1]->Redefine(start, end);
+			//figs[figs.GetSize() - 1]->Redefine(start, end);
 			InvalidateRect(paintArea);
 		}
 		CDialogEx::OnLButtonUp(nFlags, point);
