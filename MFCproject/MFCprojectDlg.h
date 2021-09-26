@@ -1,23 +1,15 @@
 
-// MFCprojectDlg.h : header file
-//
-
 #pragma once
 
 #include "Figure.h"
-//!! 17 b
 #include "RectangleF.h"
 #include "EllipseF.h"
-//!! 17 e
 
-// CMFCprojectDlg dialog
 class CMFCprojectDlg : public CDialogEx
 {
-	// Construction
 public:
-	CMFCprojectDlg(CWnd* pParent = nullptr);	// standard constructor
+	CMFCprojectDlg(CWnd* pParent = nullptr);	
 
-// Dialog Data
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_MFCPROJECT_DIALOG };
 #endif
@@ -26,14 +18,11 @@ public:
 	CTypedPtrArray< CObArray, Figure*> figs;
 	
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+	virtual void DoDataExchange(CDataExchange* pDX);	
 
-
-// Implementation
 protected:
 	HICON m_hIcon;
 
-	// Generated message map functions
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
@@ -87,7 +76,7 @@ public:
 	CButton Resize_Btn;
 	CButton Clear_Btn;
 	RECT windowRect;
-	 
+	bool isValidToPaint(CPoint point);
 	int chosenAction = ShapesAndActions::RECTANGLE;
 
 	int borderWidth;

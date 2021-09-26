@@ -16,6 +16,7 @@ public:
 	virtual ~Figure();
 	void Serialize(CArchive& ar);
 	virtual void Draw(CPaintDC& dc) ;
+	//virtual void Draw(CPaintDC& dc, );
 	CPoint getP1() const;
 	CPoint getP2() const;
 	virtual void Redefine(CPoint p1, CPoint p2);

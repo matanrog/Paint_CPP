@@ -15,11 +15,10 @@
 #define new DEBUG_NEW
 #endif
 
-// CMFCprojectDlg dialog
 
 
 
-CMFCprojectDlg::CMFCprojectDlg(CWnd* pParent /*=nullptr*/)
+CMFCprojectDlg::CMFCprojectDlg(CWnd* pParent )
 	: CDialogEx(IDD_MFCPROJECT_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
@@ -71,7 +70,6 @@ BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CMFCprojectDlg message handlers
 
 BOOL CMFCprojectDlg::OnInitDialog()
 {
@@ -86,6 +84,12 @@ BOOL CMFCprojectDlg::OnInitDialog()
 	borderWidth = 1;
 	
 	return TRUE;  // return TRUE  unless you set the focus to a control
+}
+
+bool CMFCprojectDlg::isValidToPaint(CPoint point)
+{
+	if (point.x >= paintArea.TopLeft().x && point.x <= paintArea.BottomRight().x && point.y >= paintArea.TopLeft().y && point.y <= paintArea.BottomRight().y) return 1;
+	else return 0;
 }
 
 void CMFCprojectDlg::SetImages() {
@@ -154,17 +158,14 @@ void CMFCprojectDlg::OnPaint()
 	else
 	{
 		CPaintDC dc(this);
-		// Draw paint area
 			dc.Rectangle(paintArea);
-			for (int i = 0; i < figs.GetSize(); i++) {
-				figs[i]->Draw(dc);
-			}
-			CDialogEx::OnPaint();
+				for (int i = 0; i < figs.GetSize(); i++) {
+					figs[i]->Draw(dc);
+				}
+				CDialogEx::OnPaint();
 	}
 }
 
-// The system calls this function to obtain the cursor to display while the user drags
-//  the minimized window.
 HCURSOR CMFCprojectDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
@@ -175,9 +176,8 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	start = point;
 	Figure* f;
 	isPressed = true;
-    //!! 20 b
 	figs.Add(new Figure(start, start));
-	if (point.x >= paintArea.TopLeft().x && point.x <= paintArea.BottomRight().x && point.y >= paintArea.TopLeft().y && point.y <= paintArea.BottomRight().y)
+	if (isValidToPaint(point))
 	{
 		switch (chosenAction)
 		{
@@ -218,22 +218,19 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 			}
 		}
 		InvalidateRect(paintArea);
-		//!! 20 e
 		CDialogEx::OnLButtonDown(nFlags, point);
 	}
 }
 
 void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	// TODO: Add your message handler code here and/or call default
-	if (point.x >= paintArea.TopLeft().x && point.x <= paintArea.BottomRight().x && point.y >= paintArea.TopLeft().y && point.y <= paintArea.BottomRight().y)
+	if (isValidToPaint(point)) 
 	{
 		if (isPressed)
 		{
 			end = point;
 			isPressed = false;
 			figs[figs.GetSize() - 1]->Redefine(start, end);
-			//simulates the WM_PAINT message to redraw window
 			InvalidateRect(paintArea);
 		}
 		CDialogEx::OnLButtonUp(nFlags, point);
@@ -241,14 +238,13 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 }
 void CMFCprojectDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
-	if (point.x >= paintArea.TopLeft().x && point.x <= paintArea.BottomRight().x && point.y >= paintArea.TopLeft().y && point.y <= paintArea.BottomRight().y)
+	if (isValidToPaint(point)) 
 	{
-		// TODO: Add your message handler code here and/or call default
-		if (isPressed) // add a condition  to prevent going out of lines
+		if (isPressed) 
 		{
 			end = point;
 			figs[figs.GetSize() - 1]->Redefine(start, end);
-			InvalidateRect(paintArea); //simulates the WM_PAINT message to redraw window
+			InvalidateRect(paintArea);
 		}
 		CDialogEx::OnMouseMove(nFlags, point);
 	}
