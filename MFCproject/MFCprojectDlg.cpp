@@ -179,7 +179,7 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	start = point;
 	Figure* f;
 	isPressed = true;
-	int index = GetShapeIndex(start);
+	int index;
 	//figs.Add(new Figure(start, start));
 	if (isValidToPaint(point))
 	{
@@ -212,6 +212,7 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 		case ShapesAndActions::DELETE_SHAPE:
 			if (figs.IsEmpty())
 				break;
+			index = GetShapeIndex(start);
 			if (index != -1) {
 				this->selectedShpaeIndex = index;
 			}
@@ -220,6 +221,7 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 		case ShapesAndActions::MOVE_SHAPE:
 			if (figs.IsEmpty())
 				break;
+			index = GetShapeIndex(start);
 			this->startPoint = point;
 			if (index != -1) {
 				this->selectedShpaeIndex = index;
@@ -256,6 +258,7 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 				this->selectedShpaeIndex = -1;
 			}
 		}
+
 		CDialogEx::OnLButtonUp(nFlags, point);
 	}
 }
