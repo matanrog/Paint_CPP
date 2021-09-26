@@ -241,6 +241,9 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 			//figs[figs.GetSize() - 1]->Redefine(start, end);
 			InvalidateRect(paintArea);
 		}
+		if (chosenAction == ShapesAndActions::MOVE_SHAPE) {
+			this->selectedShpaeIndex = -1;
+		}
 		CDialogEx::OnLButtonUp(nFlags, point);
 	}
 }
