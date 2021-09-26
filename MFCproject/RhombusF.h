@@ -9,7 +9,7 @@ public:
 	~RhombusF();
 	bool isInside(const CPoint& P) const;
 	void Redefine(CPoint p1, CPoint p2);
-	void Draw(CPaintDC& dc) ;
+	void Draw(CPaintDC& dc);
 	void SetShape(CPoint p1, CPoint p2);
 };
 

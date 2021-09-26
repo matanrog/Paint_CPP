@@ -26,10 +26,6 @@ void RhombusF::Redefine(CPoint p1, CPoint p2)
 }
 
 void RhombusF::SetShape(CPoint p1, CPoint p2) {
-	if (abs(p2.x - p1.x) > abs(p2.y - p1.y))
-		p2.y += p2.x - p1.x - (p2.y - p1.y);
-	else
-		p2.x += p2.y - p1.y - (p2.x - p1.x);
 	P1 = p1;
 	P2 = p2;
 }

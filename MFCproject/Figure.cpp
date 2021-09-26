@@ -28,7 +28,15 @@ CPoint Figure::getP2() const
 {
 	return P2;
 }
+void Figure::MoveTo(int x, int y, int startX, int startY)
+{
+	int moveXBy = x - startX, moveYBy = y - startY;
+	//this->P1.SetPoint(this->P1.x + moveXBy, this->P1.y + moveYBy);
+	//this->P2.SetPoint(this->P2.x + moveXBy, this->P2.y + moveYBy);
+	this->P1.SetPoint(this->P1.x + 20, this->P1.y + 20);
+	this->P2.SetPoint(this->P2.x + 20, this->P2.y + 20);
 
+}
 void Figure::Serialize(CArchive& ar)
 {
 	CObject::Serialize(ar);
@@ -40,7 +48,7 @@ void Figure::Serialize(CArchive& ar)
 		ar << borderColor;
 		ar << lineWigth;
 	}
-	else // Loading, not storing
+	else 
 	{
 		ar >> P1;
 		ar >> P2;
@@ -60,11 +68,6 @@ bool Figure::isInside(const CPoint &P) const
 {
 	return (P1.x <= P.x && P.x <= P2.x || P1.x >= P.x && P.x >= P2.x) &&
 		(P1.y <= P.y && P.y <= P2.y || P1.y >= P.y && P.y >= P2.y);
-}
-void Figure::Shift(int dx, int dy)
-{
-	P1 = P1 + CPoint(dx, dy);
-	P2 = P2 + CPoint(dx, dy);
 }
 void Figure::Redefine(CPoint p1, CPoint p2)
 {

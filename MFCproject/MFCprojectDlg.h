@@ -1,6 +1,6 @@
 
 #pragma once
-
+#include <typeinfo> 
 #include "Figure.h"
 #include "RectangleF.h"
 #include "EllipseF.h"
@@ -35,7 +35,7 @@ public:
 		RHOMBUS , 
 		TRIANGLE, 
 		LINE , 
-		RESIZE_SHAPE , 
+		MOVE_SHAPE , 
 		DELETE_SHAPE
 	};
 	
@@ -55,7 +55,6 @@ public:
 	afx_msg void OnBnClickedSavebtn();
 	afx_msg void OnBnClickedLoadbtn();
 	afx_msg void OnBnClickedClearbtn();
-	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedResizebtn();
 
 
@@ -64,6 +63,7 @@ public:
 	CMFCColorButton m_shaoeColor;
 	COLORREF fillColorShape;
 	COLORREF lineColor;
+	CPoint startPoint;
 	CRect paintArea;
 	CButton rectBtn;
 	CButton Ellipse_Btn;
@@ -76,10 +76,11 @@ public:
 	CButton Resize_Btn;
 	CButton Clear_Btn;
 	RECT windowRect;
+	int selectedShpaeIndex;
 	bool isValidToPaint(CPoint point);
 	int chosenAction = ShapesAndActions::RECTANGLE;
-
 	int borderWidth;
+	int GetShapeIndex(CPoint point);
 private:
 	void SetImages();	
 public:
