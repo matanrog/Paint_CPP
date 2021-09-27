@@ -213,10 +213,10 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 			if (figs.IsEmpty())
 				break;
 			index = GetShapeIndex(start);
-			if (index != -1) {
+			if (index != -1) 
+			{
 				this->selectedShpaeIndex = index;
 			}
-
 			break;
 		case ShapesAndActions::MOVE_SHAPE:
 			if (figs.IsEmpty())
@@ -226,7 +226,6 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 			if (index != -1) {
 				this->selectedShpaeIndex = index;
 			}
-
 			break;
 		}
 		InvalidateRect(paintArea);
@@ -243,7 +242,6 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 		{
 			end = point;
 			isPressed = false;
-			//figs[figs.GetSize() - 1]->Redefine(start, end);
 			InvalidateRect(paintArea);
 		}
 		if (!figs.IsEmpty())
@@ -253,9 +251,13 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 			}
 			if (chosenAction == ShapesAndActions::DELETE_SHAPE)
 			{
-				delete figs[this->selectedShpaeIndex];
-				figs.RemoveAt(this->selectedShpaeIndex);
-				this->selectedShpaeIndex = -1;
+				if (this->selectedShpaeIndex != -1)
+				{
+					delete figs[this->selectedShpaeIndex];
+					figs.RemoveAt(this->selectedShpaeIndex);
+					this->selectedShpaeIndex = -1;
+					InvalidateRect(paintArea);
+				}
 			}
 		}
 
@@ -268,7 +270,7 @@ void CMFCprojectDlg::OnMouseMove(UINT nFlags, CPoint point)
 	{
 		if (chosenAction == ShapesAndActions::MOVE_SHAPE)
 		{
-			if (this->selectedShpaeIndex >= 0)
+			if (this->selectedShpaeIndex != -1)
 			{
 				figs[this->selectedShpaeIndex]->MoveTo(point.x, point.y, startPoint.x, startPoint.y);
 				startPoint = point;
