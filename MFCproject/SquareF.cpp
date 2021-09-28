@@ -14,7 +14,6 @@ void SquareF::Redefine(CPoint p1, CPoint p2)
 {
 	SetShape(p1,p2);
 }
-
 void SquareF::SetShape(CPoint p1, CPoint p2) {
 	if (abs(p2.x - p1.x) > abs(p2.y - p1.y))
 		p2.y += p2.x - p1.x - (p2.y - p1.y);

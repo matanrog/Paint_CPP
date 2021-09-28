@@ -56,7 +56,7 @@ public:
 	afx_msg void OnBnClickedLoadbtn();
 	afx_msg void OnBnClickedClearbtn();
 	afx_msg void OnBnClickedResizebtn();
-
+	afx_msg void OnBnClickedDeleteshapeBtn();
 
 	CComboBox m_borderWidth;
 	CMFCColorButton m_lineColor;
@@ -84,7 +84,4 @@ public:
 	int GetShapeIndex(CPoint point);
 private:
 	void SetImages();	
-public:
-	
-	afx_msg void OnBnClickedDeleteshapeBtn();
 };

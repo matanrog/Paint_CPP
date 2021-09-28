@@ -1,4 +1,4 @@
-#include "stdafx.h"  //!!! 1st include
+#include "stdafx.h" 
 #include "Figure.h"
 
 IMPLEMENT_SERIAL(Figure, CObject, 1)
@@ -34,9 +34,6 @@ void Figure::MoveTo(int x, int y, int startX, int startY)
 	int moveYBy = y - startY;
 	this->P1.SetPoint(this->P1.x + moveXBy, this->P1.y + moveYBy);
 	this->P2.SetPoint(this->P2.x + moveXBy, this->P2.y + moveYBy);
-	//this->P1.SetPoint(this->P1.x, this->P1.y);
-	//this->P2.SetPoint(this->P2.x, this->P2.y);
-
 }
 void Figure::Serialize(CArchive& ar)
 {
@@ -77,10 +74,8 @@ void Figure::Redefine(CPoint p1, CPoint p2)
 }
 void Figure::changeFigureColor(COLORREF pen, COLORREF brush) {
 	this->fillColor = fillColor;
-	this->FigureBrush.DeleteObject();
 	this->FigureBrush.CreateSolidBrush(this->fillColor);
 
 	this->borderColor = borderColor;
-	this->FigurePen.DeleteObject();
 	this->FigurePen.CreatePen(BS_SOLID, this->lineWigth, this->borderColor);
 }

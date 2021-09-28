@@ -2,11 +2,11 @@
 #include "stdafx.h"
 class Figure : public CObject {
 public:
+
 	DECLARE_SERIAL(Figure)
 	CPoint P1;
 	CPoint P2;
 	int lineWigth;
-
 	COLORREF fillColor;
 	COLORREF borderColor;
 	CPen FigurePen;

@@ -14,10 +14,6 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
-
-
-
 CMFCprojectDlg::CMFCprojectDlg(CWnd* pParent )
 	: CDialogEx(IDD_MFCPROJECT_DIALOG, pParent)
 {
@@ -66,9 +62,8 @@ BEGIN_MESSAGE_MAP(CMFCprojectDlg, CDialogEx)
 	ON_BN_CLICKED(ID_ClearBtn, &CMFCprojectDlg::OnBnClickedClearbtn)
 	ON_BN_CLICKED(IDC_ResizeBtn, &CMFCprojectDlg::OnBnClickedResizebtn)
 	ON_BN_CLICKED(IDC_DeleteShape_Btn, &CMFCprojectDlg::OnBnClickedDeleteshapeBtn)
+
 END_MESSAGE_MAP()
-
-
 
 BOOL CMFCprojectDlg::OnInitDialog()
 {
@@ -135,16 +130,14 @@ void CMFCprojectDlg::SetImages() {
 
 }
 
-
 // If you add a minimize button to your dialog, you will need the code below
 //  to draw the icon.  For MFC applications using the document/view model,
 //  this is automatically done for you by the framework.
-
 void CMFCprojectDlg::OnPaint()
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); 
+		CPaintDC dc(this);
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
@@ -160,12 +153,12 @@ void CMFCprojectDlg::OnPaint()
 	else
 	{
 		CPaintDC dc(this);
-			dc.Rectangle(paintArea);
-				for (int i = 0; i < figs.GetSize(); i++) 
-				{
-					figs[i]->Draw(dc);
-				}
-				CDialogEx::OnPaint();
+		dc.Rectangle(paintArea);
+		for (int i = 0; i < figs.GetSize(); i++)
+		{
+			figs[i]->Draw(dc);
+		}
+		CDialogEx::OnPaint();
 	}
 }
 
@@ -212,7 +205,7 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 			if (figs.IsEmpty())
 				break;
 			index = GetShapeIndex(start);
-			if (index != -1) 
+			if (index != -1)
 			{
 				this->selectedShpaeIndex = index;
 			}
@@ -230,6 +223,7 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 		InvalidateRect(paintArea);
 		CDialogEx::OnLButtonDown(nFlags, point);
 	}
+	else isPressed = false;
 	CDialogEx::OnLButtonDown(nFlags, point);
 }
 
@@ -263,6 +257,7 @@ void CMFCprojectDlg::OnLButtonUp(UINT nFlags, CPoint point)
 		CDialogEx::OnLButtonUp(nFlags, point);
 	}
 }
+
 void CMFCprojectDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
 	if (isPressed)
@@ -286,7 +281,17 @@ void CMFCprojectDlg::OnMouseMove(UINT nFlags, CPoint point)
 	}
 }
 
-#pragma region Desing
+int CMFCprojectDlg::GetShapeIndex(CPoint point) {
+	int size = figs.GetSize();
+	for (int i = size - 1; i >= 0; i--) {
+		if (figs[i]->isInside(start)) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+#pragma region Design
 void CMFCprojectDlg::OnSelchangeLinewidth()
 {
 	CString width;
@@ -347,7 +352,6 @@ void CMFCprojectDlg::OnBnClickedSavebtn()
 		file.Close();
 	}
 }
-
 void CMFCprojectDlg::OnBnClickedLoadbtn()
 {
 	CFileDialog dlg(TRUE, _T(".figs"), NULL, 0, _T("Figures (*.figs)|*.figs|All Files (*.*)|*.*||"));
@@ -363,7 +367,6 @@ void CMFCprojectDlg::OnBnClickedLoadbtn()
 		InvalidateRect(paintArea);
 	}
 }
-
 void CMFCprojectDlg::OnBnClickedClearbtn()
 {
 	int size = figs.GetSize();
@@ -387,17 +390,6 @@ void CMFCprojectDlg::OnBnClickedDeleteshapeBtn()
 
 #pragma endregion
 
-
-
-int CMFCprojectDlg::GetShapeIndex(CPoint point) {
-	int size = figs.GetSize();
-	for (int i = size - 1; i >= 0; i--) {
-		if (figs[i]->isInside(start)) {
-			return i;
-		}
-	}
-	return -1;
-}
 /*const type_info& rhom = typeid(RhombusF);
 	const type_info& figI = typeid(figs[figs.GetSize() - 1]);
 	if (typeid(rhom) == typeid(figI))
