@@ -180,7 +180,6 @@ void CMFCprojectDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	Figure* f;
 	isPressed = true;
 	int index;
-	//figs.Add(new Figure(start, start));
 	if (isValidToPaint(point))
 	{
 		switch (chosenAction)
@@ -285,16 +284,6 @@ void CMFCprojectDlg::OnMouseMove(UINT nFlags, CPoint point)
 		}
 		CDialogEx::OnMouseMove(nFlags, point);
 	}
-	/*if (isValidToPaint(point))
-	{
-		if (isPressed) 
-		{
-			end = point;
-			figs[figs.GetSize() - 1]->Redefine(start, end);
-			InvalidateRect(paintArea);
-		}
-		CDialogEx::OnMouseMove(nFlags, point);
-	}*/
 }
 
 #pragma region Desing
