@@ -1,4 +1,4 @@
-# PainterIBAI
+# Matan & Ron's Paint
 ## Painter Application, C++ Object Oriented Programming, HIT
 
 ![](/Pics/PainterIBAI.png)
@@ -9,12 +9,17 @@
 - Create Rectangle
 - Create Line
 - Create Ellipse
-- Create Circle
+- Create Rhombus
 - Create Square
-- Undo paint
-- Redo paint
+- Clear paint area
+- Delete a shape
+- Move a shape
+- Create shapes with different colors
+- Craete shapes with different border line width and color
 - Save paint into file
 - Load paint from file
+- Icons as buttons
+- Painting area boundaries
 
 ![](/Pics/ClassDiagram.png)
 
@@ -22,31 +27,27 @@
 
 
 ## Classes
-PainterIBAI uses a number of classes based on the polymorphism principals :
-- *Figure* - The parent class, Creates CDC object, 2 points and 2 Get functions to save the points.
-- *Line* - Inherits from Figure, Creates CDC object and a Draw function.
-- *Rectangle* - Inherits from Figure and Creates CDC object.
-- *Ellipse* - Inherits from Figure, Creates CDC object and a Draw function.
-- *Circle* - 
-- *Square* - 
+Matan & Ron's Paint uses a number of classes based on the polymorphism principals :
+- *FigureF* - The parent class, Creates CDC object with virtual functions.
+- *LineF* - Inherits from Figure, Creates CDC object.
+- *RectangleF* - Inherits from Figure and Creates CDC object.
+- *EllipseF* - Inherits from Figure, Creates CDC object.
+- *SquareF* - Inherits from RectangleF.
+- *RhombusF* - Inherits from RectangleF.
 
-
-## PainterIBAIDlg.cpp - Main Functions
+## MFCprojectDlg.cpp - Main Functions
 This file is the worker where all the buttons and wotking functions will be executed.
-The following is the functions written inside PainterIBAIDlg.cpp:
-#### OnInitDialog
-Responsible for the defaults inside the dialog.
-For example, the default figure is Rectangle(1).
-C++
-CheckRadioButton(IDC_RADIO1, IDC_RADIO3, IDC_RADIO1); // Set default radio button to IDC_RADIO1
+The following is the functions written inside MFCprojectDlg.cpp:
 
 #### OnPaint
 Creates CpaintDC type variable to device context for painting.
 Generally, this function responsible for the activities inside the dialog, for example:
-- Undo - When the user press the 'undo' button, the application rewrite the figures already created in the dialog,
-except for the last figure. Therefor the user can undo only the last figure created.
 - Draw - Const Virtual function created inside Figure.h, in order to use the CDC object.
-C++
+
+	if (IsIconic())
+	{
+        CPaintDC dc(this); // device context for painting
+		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 		// Center icon in client rectangle
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
@@ -54,18 +55,35 @@ C++
 		GetClientRect(&rect);
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
-
-- Set Icon - Alligns the icon to the center.
-C++
 		// Draw the icon
 		dc.DrawIcon(x, y, m_hIcon);
+	}
+	else
+	{
+		CPaintDC dc(this);
+		// Draw paint area
+		dc.Rectangle(paintArea);
+		for (int i = 0; i < figs.GetSize(); i++) {
+			figs[i]->Draw(dc);
+		}
+		CDialogEx::OnPaint();
+	}
+
 
 ## Important Functions
-MFC contains multiple classes we used in order to create the objects and the painting abillity.
-| Class | Description |
+MFC contains multiple functions we used in order to create the objects and the painting abillity.
+| Functions | Description |
 | ------ | ------ |
-| Serialization | Future TASK |
-| Invalidate | Future TASK |
+| OnLButtonDown| An event rised when the cursor click on the screen|
+| OnLButtonUp | An event rised when the cursor release  the click on the screen|
+| OnMouseMove | An event rised when the cursor moves on the screen|
+| OnPaint | An event rised when 'InvalidateRect' happand and  paint the shapes on the paint area|
+| InvalidateRect | Upadetes the screen and calls OnPaint |
+| Draw | Each shape implements it's own draw function |
+| MoveTo | Move a shape that is selected across the screen |
+|Redefine| Used to draw the figure on the screen or in order to move the figure |
+|IsInside| Used to check whether the user clicked on a figure|
+
 
 ## MFC Important Classes
 MFC contains multiple classes we used in order to create the objects and the painting abillity.
@@ -75,162 +93,4 @@ MFC contains multiple classes we used in order to create the objects and the pai
 | CArchive | Part of the Serialization options, allows to store figures and rewrite them. Used as temporary memory. |
 | CPoint | Stores the point values (X,Y) on screen. |
 | CpaintDc | Prepares the application window for painting. |
-
-## Buttons
-#### OnLBtuttonDown
-Allows the appendence of new figures into figs[] (The array responsible for saving the figures created).
-The dufault figure is Rectangle.
-C++
-switch (KindOfShape)
-	{
-		case 1:
-			figs.Add(new RectangleP(start, start));
-			break;
-			// Continute the rest of the figures enabled.
-
-
-#### OnLButtonUp
-
-C++
-	if (isPressed)
-	{
-		end = point;
-		isPressed = false;
-		figs[figs.GetSize() - 1]->Redefine(start, end);
-		Invalidate();
-	}
-
-#### OnBnClickedOk
-Exit Button
-C++
-void CPainterIBAIDlg::OnBnClickedOk() // Exit btn
-{
-	CDialogEx::OnOK();
-}
-
-
-#### OnBnClickedRadio1
-Rectangle -- default figure
-C++
-void CPainterIBAIDlg::OnBnClickedRadio1()
-{
-	KindOfShape = 1;
-}
-
-
-#### OnBnClickeRadio2
-Ellipse
-C++
-void CPainterIBAIDlg::OnBnClickedRadio2() // Ellipse
-{
-	KindOfShape = 2;
-}
-
-
-#### OnBnClickedRadio3
-Line
-C++
-void CPainterIBAIDlg::OnBnClickedRadio3() // Line
-{
-	KindOfShape = 3;
-}
-
-
-#### OnBnClickedRadio4
-Circle
-C++
-void CPainterIBAIDlg::OnBnClickedRadio4()
-{
-	KindOfShape = 4;
-}
-
-
-#### OnBnClickedRadio5
-Square
-C++
-void CPainterIBAIDlg::OnBnClickedRadio5()
-{
-	KindOfShape = 5;
-}
-
-
-#### OnBnClickedButton1
-Save Button
-C++
-void CPainterIBAIDlg::OnBnClickedButton1() // Save Btn
-{
-	CFileDialog dlg(FALSE, _T(".figs"), NULL, 0, _T("Figures (*.figs)|*.figs|All Files (*.*)|*.*||"));
-	CString filename;
-	if (dlg.DoModal() == IDOK)
-	{
-		filename = dlg.GetPathName(); // return full path and filename
-		CFile file(filename, CFile::modeCreate | CFile::modeWrite);
-		CArchive ar(&file, CArchive::store);
-		figs.Serialize(ar);
-		ar.Close();
-		file.Close();
-	}
-}
-
-
-#### OnBnClickedButton2
-Load Button
-C++
-void CPainterIBAIDlg::OnBnClickedButton2() // Load Btn
-{
-	CFileDialog dlg(TRUE, _T(".figs"), NULL, 0, _T("Figures (*.figs)|*.figs|All Files (*.*)|*.*||"));
-	CString filename;
-	if (dlg.DoModal() == IDOK)
-	{
-		filename = dlg.GetPathName();
-		CFile file(filename, CFile::modeRead);
-		CArchive ar(&file, CArchive::load);
-		figs.Serialize(ar);
-		ar.Close();
-		file.Close();
-		Invalidate();
-	}
-}
-
-
-#### OnBnClickedButton3
-Undo Button
-C++
-void CPainterIBAIDlg::OnBnClickedButton3() // Undo Btn
-{
-	if (clear_btn_activated) // if we clear all screen and want to undo it
-	{
-		for (int i = 0; i < (temp_figs.GetSize()); i++) // restore figs[]
-			figs.Add(temp_figs[i]);
-		temp_figs.RemoveAll(); // delete temp_figs[]
-		clear_btn_activated = false; // clear all btn not activated
-		Invalidate();
-		return;
-	}
-
-	CheckUndo = true;
-	Invalidate();
-}
-
-
-#### OnBnClickedButton4
-Redo Button
-C++
-void CPainterIBAIDlg::OnBnClickedButton4() // Redo Btn
-{
-	CheckUndo = false;
-	Invalidate();
-}
-
-
-#### OnBnClickedButton5
-Clear akk button
-C++
-void CPainterIBAIDlg::OnBnClickedButton5() // Clear All Btn
-{
-	clear_btn_activated = true;
-	for (int i = 0; i < (figs.GetSize()); i++)
-		temp_figs.Add(figs[i]);
-	figs.RemoveAll();
-	Invalidate();
-}
+| CRect | Defines the painting area. |
