@@ -220,6 +220,7 @@
     <None Include="ClassDiagram13.cd" />
     <None Include="ClassDiagram14.cd" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram21.cd" />
     <None Include="ClassDiagram3.cd" />
     <None Include="res\MFCproject.rc2" />
   </ItemGroup>

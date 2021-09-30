@@ -82,7 +82,8 @@ BOOL CMFCprojectDlg::OnInitDialog()
 
 bool CMFCprojectDlg::isValidToPaint(CPoint point)
 {
-	if (point.x >= paintArea.TopLeft().x && point.x <= paintArea.BottomRight().x && point.y >= paintArea.TopLeft().y && point.y <= paintArea.BottomRight().y) return 1;
+	if (point.x >= paintArea.TopLeft().x && point.x <= paintArea.BottomRight().x 
+		&& point.y >= paintArea.TopLeft().y && point.y <= paintArea.BottomRight().y) return 1;
 	else return 0;
 }
 
