@@ -1,7 +1,7 @@
 # Matan & Ron's Paint
 ## Paint Application, C++ Object Oriented Programming, HIT College
 
-![](MFC_IMG/MFC_MAIN.PNG)
+![](mfc_img/mfc_screen.PNG)
 
 ✨Ron Hugi ✨
 ✨Matan Roginsky✨
