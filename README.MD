@@ -1,8 +1,6 @@
 # Matan & Ron's Paint
 ## Paint Application, C++ Object Oriented Programming, HIT College
 
-![](mfc_img/mfc_screen.PNG)
-
 ✨Ron Hugi ✨
 ✨Matan Roginsky✨
 ## Features
@@ -94,3 +92,7 @@ MFC contains multiple classes we used in order to create the objects and the pai
 | CPoint | Stores the point values (X,Y) on screen. |
 | CpaintDc | Prepares the application window for painting. |
 | CRect | Defines the painting area. |
+
+## Screen Shots
+![](mfc_img/mfc_screen.PNG)
+
