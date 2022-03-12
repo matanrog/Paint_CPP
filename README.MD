@@ -1,5 +1,5 @@
 # Matan & Ron's Paint
-## Painter Application, C++ Object Oriented Programming, HIT
+## Paint Application, C++ Object Oriented Programming, HIT College
 
 ![](/Pics/PainterIBAI.png)
 
