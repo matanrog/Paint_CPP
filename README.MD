@@ -43,7 +43,7 @@ The following is the functions written inside MFCprojectDlg.cpp:
 Creates CpaintDC type variable to device context for painting.
 Generally, this function responsible for the activities inside the dialog, for example:
 - Draw - Const Virtual function created inside Figure.h, in order to use the CDC object.
-
+```cpp
 	if (IsIconic())
 	{
         CPaintDC dc(this); // device context for painting
@@ -69,7 +69,7 @@ Generally, this function responsible for the activities inside the dialog, for e
 		CDialogEx::OnPaint();
 	}
 
-
+```
 ## Important Functions
 MFC contains multiple functions we used in order to create the objects and the painting abillity.
 | Functions | Description |
